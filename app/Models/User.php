@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'type',
+        'type'
     ];
 
 
@@ -39,6 +39,6 @@ class User extends Authenticatable
 
      public function client()
      {
-         return $this->hasOne(Client::class);
+
      }
 }
