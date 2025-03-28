@@ -9,24 +9,22 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
+    public function store(Request $request){
 
-        $request->validate([
+        $formFields = $request->validate([
             'email' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
+        $formFields['password'] = Hash::make($formFields['password']);
+        $formFields['type'] = 'user';
 
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return redirect("/");
+        User::create($formFields);
+        return redirect("/welcome");
         // return response()->json(['user' => $user], 201);
     }
 
     public function login(Request $request){
-        $request-> validate([
+         $request-> validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
