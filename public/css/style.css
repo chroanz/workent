@@ -1,0 +1,28 @@
+:root {
+    --primary-color: #1D227C;
+    --secondary-color: #FFF;
+}
+
+
+*
+{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body, html
+{
+ height: 100%;
+ width: 100%;
+}
+
+
+.bg-primary-color
+{
+    background-color: var(--primary-color);
+}
+.bg-secondary-color
+{
+    background-color: var(--secondary-color);
+}
