@@ -38,11 +38,16 @@
     outline: none;
 }
 
-.img-container
+.image-container
 {
     width: 50%;
 }
 
+.image-container > img{
+    width: 100% !important; 
+    height: 100% !important;
+    overflow: hidden;
+}
 .form-container
 {
     width: 50%;
@@ -50,10 +55,12 @@
 
 @media (max-width: 992px) { /* Para tablets e celulares */
     .image-container {
-        display: none; /* Esconde a imagem */
+        display: none;
     }
 
     .form-container {
-        width: 100% !important; /* Faz o formulário ocupar 100% da largura */
+        width: 100% !important; 
     }
+
+   
 }
