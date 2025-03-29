@@ -1,26 +1,28 @@
 @extends("layout.app")
 @section("content")
 <div class="bg-primary-color h-100 w-100 d-flex">
-<div class="w-50 d-flex align-items-center justify-content-center">
-    <form action="" class="bg-secondary-color w-50 h-50">
-        <h2>Entrar na conta</h2>
-        <div>
-            <label for="">Email</label>
-            <input type="email">
+<div class="d-flex align-items-center justify-content-center form-container">
+    <form action="" class="bg-secondary-color form">
+        <h2 class="title-var">Entrar na conta</h2>
+        <div class="d-flex flex-column w-75">
+            <label for="" class="label-var">Email</label>
+            <input type="email" class="input-var">
         </div>
 
-        <div>
-            <label for="">Senha</label>
-            <input type="password">
+        <div class="d-flex flex-column w-75">
+            <label for="" class="label-var">Senha</label>
+            <input type="password" class="input-var">
         </div>
-        <div>
+        <div class="d-flex w-75 justify-content-end">
             <a href="">Esqueci a senha</a>
         </div>
-        <button>Entrar</button>
-        <button>Criar uma conta</button>
+        <div class="d-flex flex-column w-75 gap-3">
+            <button class="btn-var-primary">Entrar</button>
+            <button class="link-var-primary">Criar uma conta</button>
+        </div>
     </form>
 </div>
-<div class="w-50">
+<div class="image-container">
     <img src="{{asset('img/img-bg-login.png')}}" alt="" class="w-100 h-100">
 </div>
 </div>

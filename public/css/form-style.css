@@ -1,0 +1,59 @@
+
+.form
+{
+    width: 50%;
+    height: 50%;
+    min-width: 400px;
+    min-height: 460px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.label-var
+{
+    color: var(--tertiary-color);
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.title-var
+{
+    color: var(--primary-color);
+    font-size: 40px;
+    font-weight: 600;
+}
+
+
+.input-var
+{
+    height: 40px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.img-container
+{
+    width: 50%;
+}
+
+.form-container
+{
+    width: 50%;
+}
+
+@media (max-width: 992px) { /* Para tablets e celulares */
+    .image-container {
+        display: none; /* Esconde a imagem */
+    }
+
+    .form-container {
+        width: 100% !important; /* Faz o formulário ocupar 100% da largura */
+    }
+}
