@@ -13,6 +13,21 @@
     gap: 10px;
 }
 
+.form-cadastro
+{
+    width: 50%;
+    height: 58%;
+    min-width: 400px;
+    min-height: 460px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
 .label-var
 {
     color: var(--tertiary-color);
@@ -51,6 +66,12 @@
 .form-container
 {
     width: 50%;
+}
+
+.error
+{
+    color: rgb(212, 48, 48);
+    font-size: 15px;
 }
 
 @media (max-width: 992px) { /* Para tablets e celulares */
