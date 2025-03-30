@@ -19,7 +19,7 @@
             </div>
             <div class="d-flex flex-column w-75 gap-3">
                 <button class="btn-var-primary" type="submit">Entrar</button>
-                <button class="link-var-primary">Criar uma conta</button>
+                <a href="{{route('cadastrar')}}" class="link-var-primary">Criar uma conta</a>
             </div>
         </form>
     </div>

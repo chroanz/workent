@@ -9,10 +9,10 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('pages/login');
-});
+})->name("login");
 
 
 
 Route::get('/cadastrar', function () {
     return view('pages/cadastrar');
-});
+})->name("cadastrar");
