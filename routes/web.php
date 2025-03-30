@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('pages/login');
 });
+
+Route::get('/footer', function () {
+    return view('components/footer');
+});
