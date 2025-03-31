@@ -18,8 +18,19 @@
             if(campo.classList.contains("rep_senha"))
             {
                 formValido =  validarRepetirSenha() && formValido
-
                
+            }
+
+            if(campo.classList.contains("textarea"))
+            {
+                formValido =  validarTextarea(campo) && formValido
+
+            }
+
+            if(campo.classList.contains("nome"))
+            {
+                formValido =  validarNome(campo) && formValido
+
             }
             
         })
@@ -81,5 +92,27 @@
                 erro.remove();
             })
         }
+    }
+
+    function validarTextarea(campo)
+    {
+        if(campo.value.length >= 8)
+        {
+            return true;
+        }
+        console.log(campo)
+        criarError(campo, "O campo endereço deve ter no mínimo 8 caracteres.");
+        return false;
+    }
+
+    function validarNome(campo)
+    {
+        if(campo.value.length >= 8)
+        {
+            return true;
+        }
+        console.log(campo)
+        criarError(campo, "O campo nome deve ter no mínimo 8 caracteres.");
+        return false;
     }
 })();

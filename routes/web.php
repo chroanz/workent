@@ -13,6 +13,11 @@ Route::get('/login', function () {
 
 
 
+Route::get('/registrar', function () {
+    return view('pages/registrar');
+})->name("registrar");
+
+
 Route::get('/cadastrar', function () {
     return view('pages/cadastrar');
 })->name("cadastrar");
