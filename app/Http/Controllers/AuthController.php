@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -9,42 +10,43 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function store(Request $request){
-
+    // Registro de usuário
+    public function store(Request $request)
+    {
         $formFields = $request->validate([
-            'email' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
+
         $formFields['password'] = Hash::make($formFields['password']);
         $formFields['type'] = 'user';
 
         User::create($formFields);
         return redirect("/welcome");
-        // return response()->json(['user' => $user], 201);
     }
 
-    public function login(Request $request){
-         $request-> validate([
-            'email' => 'required|email',
+    // Login de usuário
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
             'password' => 'required'
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
-        return response()->json(['message' => 'Credenciais inválidas'], 401);
+        if (Auth::attempt($credentials)) {  
+            $request->session()->regenerate();
+            return redirect('/');
         }
 
-        $user = Auth::user();
-        // $token = $user -> createToken('auth_tocken')->plainTexttoken;
-
-        // return response()->json(['token' => $token, 'user' => $user]);
+        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
-
     // Logout de usuário
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return response()->json(['message' => 'Logout realizado com sucesso']);
     }
-
 }
-
