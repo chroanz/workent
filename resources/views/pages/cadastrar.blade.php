@@ -22,7 +22,6 @@
 
             <div class="d-flex flex-column w-75 gap-3">
                 <button class="btn-var-primary" type="submit">Criar conta</button>
-                <a href="{{route('login')}}" class="link-var-primary">Entrar em uma conta existente</a>
             </div>
         </form>
     </div>
