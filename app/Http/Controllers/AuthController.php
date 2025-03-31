@@ -22,7 +22,7 @@ class AuthController extends Controller
         $formFields['type'] = 'user';
 
         User::create($formFields);
-        return redirect("/welcome");
+        return redirect("/");
     }
 
     // Login de usuário
@@ -33,9 +33,9 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {  
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect('/welcome');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
