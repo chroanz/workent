@@ -11,7 +11,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::prefix('auth')->controller(AuthController::class)->group(function () {
-    Route::post('/', 'store')->name('auth.store');
-});
 
+Route::get('/login', function () {
+    return view('pages/login');
+});

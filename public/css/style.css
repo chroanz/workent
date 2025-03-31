@@ -1,0 +1,56 @@
+:root {
+    --primary-color: #1D227C;
+    --secondary-color: #FFF;
+    --tertiary-color: #263AD1;
+}
+
+
+*
+{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body, html
+{
+ height: 100%;
+ width: 100%;
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.bg-primary-color
+{
+    background-color: var(--primary-color);
+}
+.bg-secondary-color
+{
+    background-color: var(--secondary-color);
+}
+
+
+.btn-var-primary
+{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.link-var-primary
+{
+    color: var(--tertiary-color);
+    background-color: #FFF;
+    border: none;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.container
+{
+    width: 100%;
+    height: 100%;
+}
