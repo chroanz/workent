@@ -22,7 +22,7 @@ class AuthController extends Controller
         $formFields['type'] = 'user';
 
         User::create($formFields);
-        return redirect("/");
+        return redirect("/login");
     }
 
     // Login de usuário
