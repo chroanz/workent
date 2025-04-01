@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    // Registro de usuário
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -22,11 +20,10 @@ class AuthController extends Controller
         $formFields['type'] = 'user';
 
         User::create($formFields);
-        return redirect("/login");
+        return redirect("/auth/login");
     }
 
-    // Login de usuário
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -35,18 +32,18 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/welcome');
+            return redirect('/');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
-    // Logout de usuário
+
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return response()->json(['message' => 'Logout realizado com sucesso']);
+        return redirect("/auth/login");
     }
 }
