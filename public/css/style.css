@@ -92,6 +92,7 @@ header .logo {
     border: none;
     text-decoration: underline;
     font-size: 20px;
+    text-align: center;
 }
 
 .container
@@ -172,5 +173,5 @@ header .logo {
     .footer div p {
         font-size: 1rem;
     }
-    
+
 }

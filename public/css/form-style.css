@@ -13,6 +13,23 @@
     gap: 10px;
 }
 
+
+
+.form-cadastro
+{
+    width: 50%;
+    height: auto;
+    min-width: 400px;
+    min-height: 550px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px;
+}
+
 .label-var
 {
     color: var(--tertiary-color);
@@ -53,6 +70,12 @@
     width: 50%;
 }
 
+.error
+{
+    color: rgb(212, 48, 48);
+    font-size: 15px;
+}
+
 @media (max-width: 992px) { /* Para tablets e celulares */
     .image-container {
         display: none;
@@ -63,4 +86,11 @@
     }
 
    
+}
+
+
+.textarea
+{
+    height: 120px;
+    padding: 5px 10px;
 }
