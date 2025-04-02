@@ -20,5 +20,12 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages/salas/salas');
+});
+
+Route::get('/salas', function () {
+    return view('pages/salas/salas');
+});
+Route::get('/salas/{id}', function () {
+    return view('pages/salas/detalhes');
 });
