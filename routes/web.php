@@ -20,14 +20,12 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 });
 
 Route::get('/', function () {
-    return view('pages/salas');
+    return view('pages/salas/salas');
 });
 
-
-Route::get('/login', function () {
-    return view('pages/login');
+Route::get('/salas', function () {
+    return view('pages/salas/salas');
 });
-
 Route::get('/salas/{id}', function () {
-    return view('pages/detalhes');
+    return view('pages/salas/detalhes');
 });
