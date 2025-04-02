@@ -9,11 +9,9 @@
 </head>
 <body>
     <div id="app" class="h-100 w-100">
-        @include('components.header')
         <main class="h-100 w-100">
             @yield('content')
         </main>
-        @include('components.footer')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

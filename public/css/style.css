@@ -116,6 +116,34 @@ header .logo {
     font-size: 1.2rem;
 }
 
+.galeria {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.img-galeria {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 1rem;
+}
+
+.pagina-detalhes {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sala-descricao, .sala-acoes {
+    max-width: 450px;
+}
+
 @media screen and (max-width: 768px) {
     header nav {
         flex-direction: column;
@@ -129,4 +157,5 @@ header .logo {
     .footer div p {
         font-size: 1rem;
     }
+    
 }
