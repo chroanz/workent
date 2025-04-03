@@ -17,7 +17,17 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/cadastrar', function () {
         return view('pages/auth/cadastrar');
     })->name("auth.cadastrar");
-});
+
+    Route::get('/salas', function () {
+        return view('pages/salas/salas');
+    });
+
+    Route::get('/salas/{id}', function () {
+        return view('pages/salas/detalhes');
+    });
+
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    });
 
 Route::get('/', function () {
     return view('pages/salas/salas');
@@ -29,3 +39,4 @@ Route::get('/salas', function () {
 Route::get('/salas/{id}', function () {
     return view('pages/salas/detalhes');
 });
+
