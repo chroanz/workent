@@ -4,7 +4,7 @@
   <div class="bg-white w-100 d-flex justify-content-center align-items-start"
     style="min-height: 100%">
     <div class="pagina-salas d-flex flex-wrap py-5">
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -20,8 +20,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -37,8 +37,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -54,8 +54,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -71,8 +71,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -88,8 +88,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -105,8 +105,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -122,8 +122,8 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
-      <div class="card-sala d-flex flex-column justify-content-start gap-2 p-2">
+      </a>
+      <a href="/salas/detalhes" class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
         <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
         <div
           class="card-descricao d-flex justify-content-between align-items-start">
@@ -139,7 +139,7 @@
             <p>4.91</p>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
