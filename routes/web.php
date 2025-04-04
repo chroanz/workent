@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EvaluationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,4 +29,9 @@ Route::get('/salas', function () {
 });
 Route::get('/salas/{id}', function () {
     return view('pages/salas/detalhes');
+});
+
+Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
+    Route::get('/', 'create')->name('evaluation.create');
+    Route::post('/', 'store')->name('evaluation.store');
 });
