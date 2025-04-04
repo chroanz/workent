@@ -26,6 +26,11 @@ Route::get('/', function () {
 Route::get('/salas', function () {
     return view('pages/salas/salas');
 });
-Route::get('/salas/{id}', function () {
-    return view('pages/salas/detalhes');
+
+Route::get('/salas/detalhes', function () {
+   return view('pages/salas/detalhes');
+});
+
+Route::get('/salas/pagamento', function () {
+    return view('pages/salas/pagamento');
 });
