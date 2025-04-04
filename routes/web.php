@@ -27,7 +27,7 @@ Route::get('/salas', function () {
     return view('pages/salas/salas');
 });
 
-Route::get('/salas/detalhes/{id}', function () {
+Route::get('/salas/detalhes', function () {
    return view('pages/salas/detalhes');
 });
 
