@@ -160,6 +160,17 @@ header .logo {
     aspect-ratio: 1/1;
 }
 
+.payment-img {
+    width: clamp(250px, 100%, 500px);
+
+}
+
+.payment-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+}
+
 @media screen and (max-width: 768px) {
     header nav {
         flex-direction: column;
