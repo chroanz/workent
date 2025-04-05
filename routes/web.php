@@ -5,6 +5,10 @@ use App\Http\Controllers\EvaluationController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/', function () {
+    return view('pages/salas/salas');
+});
+
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('/registrar', 'store')->name('auth.store');
     Route::post('/login', 'authenticate')->name('auth.authenticate');
@@ -20,8 +24,26 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     })->name("auth.cadastrar");
 });
 
-Route::get('/', function () {
-    return view('pages/salas/salas');
+Route::prefix('admin')->group(function () {
+    Route::get('/reservas', function () {
+        return view('pages/admin/rent/index');
+    })->name('admin.rent.index');
+
+    Route::get('/salas', function () {
+        return view('pages/admin/room/index');
+    })->name('admin.room.index');
+    Route::get('/salas/criar', function () {
+        return view('pages/admin/room/create');
+    })->name('admin.room.create');
+
+    Route::get('/pagamentos', function () {
+        return view('pages/admin/payment/index');
+    })->name('admin.payment.index');
+});
+
+Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
+    Route::get('/', 'create')->name('evaluation.create');
+    Route::post('/', 'store')->name('evaluation.store');
 });
 
 Route::get('/salas', function () {
@@ -30,8 +52,12 @@ Route::get('/salas', function () {
 Route::get('/salas/{id}', function () {
     return view('pages/salas/detalhes');
 });
+Route::get('/reservas/{id}', function () {
+    return view('pages/rent/show');
+})->name('rent.show');
 
-Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
-    Route::get('/', 'create')->name('evaluation.create');
-    Route::post('/', 'store')->name('evaluation.store');
+Route::prefix('perfil')->group(function () {
+    Route::get('/', function () {
+        return view('pages/profile/edit');
+    })->name('profile.edit');
 });
