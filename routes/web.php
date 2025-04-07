@@ -34,3 +34,10 @@ Route::get('/salas/{id}', function () {
 Route::get('/salas', function () {
     return view('pages/salas/salas');
 });
+
+
+Route::prefix('admin')->group(function () {
+    Route::get("/reservas", function() {
+        return view("pages/admin/reservas");
+    })->name("admin.reservas");
+});
