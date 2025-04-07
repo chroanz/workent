@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,14 +19,6 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
         return view('pages/auth/cadastrar');
     })->name("auth.cadastrar");
 
-    Route::get('/salas', function () {
-        return view('pages/salas/salas');
-    });
-
-    Route::get('/salas/{id}', function () {
-        return view('pages/salas/detalhes');
-    });
-
     Route::post('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
     });
 
@@ -33,10 +26,10 @@ Route::get('/', function () {
     return view('pages/salas/salas');
 });
 
+Route::get('/salas/{id}', function () {
+    return view('pages/salas/detalhes');
+})->middleware(Authenticate::class) ;
+
 Route::get('/salas', function () {
     return view('pages/salas/salas');
 });
-Route::get('/salas/{id}', function () {
-    return view('pages/salas/detalhes');
-});
-
