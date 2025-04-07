@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="acesso-usuario">
-      <a href="#">
+      <a href="/auth/login">
         <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
           class="me-2">
       </a>

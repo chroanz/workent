@@ -17,7 +17,7 @@ class AuthController extends Controller
         ]);
 
         $formFields['password'] = Hash::make($formFields['password']);
-        $formFields['type'] = 'user';
+        $formFields['type'] = 'admin';
 
         User::create($formFields);
         return redirect("/auth/login");
