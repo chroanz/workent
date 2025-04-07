@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/salas/{id}', function () {
     return view('pages/salas/detalhes');
-})->middleware(Authenticate::class) ;
+})->middleware(AdminMiddleware::class) ;
 
 Route::get('/salas', function () {
     return view('pages/salas/salas');
