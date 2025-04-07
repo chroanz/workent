@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Authenticate
+class AuthenticateMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,6 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect()->route('auth.login');
-        }
-        return $next($request);
+        return Auth::check() ? $next($request) : redirect()->route('auth.login');
     }
 }
