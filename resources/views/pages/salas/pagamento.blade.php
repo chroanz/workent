@@ -19,7 +19,7 @@ $room = (object) [
 <div class="w-100 d-flex justify-content-center py-5">
     <div class="d-flex flex-wrap gap-5 p-5 justify-content-center align-items-start" style="max-width: 1200px">
         <div class="payment-img">
-            <img src="/img/povo-feliz-trampando.png" alt="Imagem de pessoas felizes trabalhando">
+            <img src="{{ asset('img/povo-feliz-trampando.png') }}" alt="Imagem de pessoas felizes trabalhando">
         </div>
         <form method="POST" action="{{ route('payment.store') }}" class="d-flex flex-column gap-2">
             @csrf

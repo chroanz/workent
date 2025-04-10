@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
-use App\Models\Payment;
 use Illuminate\Support\Facades\Route;
 
 
