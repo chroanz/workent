@@ -62,6 +62,10 @@ Route::get('/reservas/{id}', function () {
     return view('pages/rent/show');
 })->name('rent.show');
 
+Route::get('/validacao', function () {
+    return view('pages/salas/validacao');
+});
+
 Route::prefix('perfil')->group(function () {
     Route::get('/', function () {
         return view('pages/profile/edit');
