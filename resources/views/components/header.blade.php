@@ -1,8 +1,10 @@
 <header class="d-flex justify-content-center align-items-center">
   <nav class="d-flex justify-content-between align-items-center"
     style="width: clamp(300px, 100%, 1200px)">
-    <img src="{{ asset('img/logo-horizontal.png') }}" alt=""
-      class="logo">
+    <a href="{{ route('home') }}" class="logo">
+      <img src="{{ asset('img/logo-horizontal.png') }}" alt=""
+        class="logo">
+    </a>
     <div class="barra-busca shadow-sm">
       <div>
         <a href="#" class="text-decoration-none text-dark">Salas</a>
@@ -21,7 +23,7 @@
       </div>
     </div>
     <div class="acesso-usuario">
-      <a href="#">
+      <a href="{{ route('auth.login') }}">
         <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
           class="me-2">
       </a>

@@ -24,7 +24,7 @@
 
         <div class="d-flex flex-column w-75 gap-3">
           <button type="submit" class="btn-var-primary">Entrar</button>
-          <a href="{{ route('auth.registrar') }}" class="link-var-primary">
+          <a href="{{ route('auth.create') }}" class="link-var-primary">
             Criar uma conta
           </a>
         </div>
