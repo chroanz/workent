@@ -67,7 +67,7 @@
           <p><strong class="fs-1">R$ 89,90</strong> por dia</p>
           <p class="fs-5">Disponível de 8 da manhã até 18 da tarde</p>
           <button class="btn-var-primary fs-5 py-2"
-            style="width: 250px">Reservar</button>
+            style="width: 250px" onclick="window.location.href = '/salas/pagamento';">Reservar</button>
         </div>
       </div>
     </div>

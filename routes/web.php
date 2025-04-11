@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,9 +56,19 @@ Route::prefix('avaliar')->controller(EvaluationController::class)->group(functio
 Route::get('/salas', function () {
     return view('pages/salas/salas');
 });
-Route::get('/salas/{id}', function () {
+
+Route::get('/salas/detalhes', function () {
     return view('pages/salas/detalhes');
 });
+
+Route::get('/salas/pagamento', function () {
+    return view('pages/salas/pagamento');
+})->name("auth.pagamento");
+
+Route::prefix('payment')->controller(PaymentController::class)->group(function () {
+    Route::post('/', 'store')->name('payment.store');
+});
+
 Route::get('/reservas/{id}', function () {
     return view('pages/rent/show');
 })->name('rent.show');
