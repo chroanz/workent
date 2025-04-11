@@ -48,6 +48,14 @@ Route::prefix('admin')->group(function () {
     })->name('admin.payment.index');
 });
 
+Route::prefix('reserva')->group(function () {
+    Route::get('/detalhes-reserva', function () {
+        return view('pages/reserva/detalhes');
+    })->name('reserva.detalhes');
+
+
+});
+
 Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
     Route::get('/', 'create')->name('evaluation.create');
     Route::post('/', 'store')->name('evaluation.store');
