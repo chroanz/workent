@@ -68,7 +68,6 @@ Route::prefix('perfil')->group(function () {
     })->name('profile.edit');
 });
 
-
 //Rotas acessiveis por meio da interface
 // /auth/registrar
 // /auth/login
