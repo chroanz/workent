@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Controllers\EvaluationController;
-use App\Http\Controllers\RentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -69,7 +68,6 @@ Route::prefix('perfil')->group(function () {
     })->name('profile.edit');
 });
 
-Route::post('/reservas', [RentController::class, 'store'])->name('rent.store');
 
 //Rotas acessiveis por meio da interface
 // /auth/registrar
