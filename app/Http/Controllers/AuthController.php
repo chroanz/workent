@@ -9,6 +9,11 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    public function create()
+    {
+        return view('pages/auth/register');
+    }
+
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -38,6 +43,11 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 
+    public function login()
+    {
+        return view('pages/auth/login');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -45,5 +55,15 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect("/auth/login");
+    }
+
+    public function finishRegister()
+    {
+        return view('pages/auth/finish-register');
+    }
+
+    public function finishRegisterStore(Request $request)
+    {
+        return redirect("/");
     }
 }
