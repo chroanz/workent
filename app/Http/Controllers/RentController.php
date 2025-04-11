@@ -14,7 +14,7 @@ class RentController extends Controller
     {
         // Carrega os aluguéis com seus relacionamentos
         $rents = Rent::with(['client', 'room', 'guests', 'payment', 'evaluation'])->get();
-        return view('pages.rent.index', compact('rents'));
+        return view('pages.admin.rent.index', compact('rents'));
     }
 
     /**
@@ -33,7 +33,7 @@ class RentController extends Controller
         
         // Cria o aluguel
         $rent = Rent::create($validated);
-        return redirect()->route('rent.show', $rent->id);
+        return redirect()->route('admin.rent.index');
     }
 
     /**
