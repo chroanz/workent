@@ -5,12 +5,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\RoomController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\HasNoClientMiddleware;
 
-Route::get('/', function () {
-    return view('pages/salas/salas');
-})->name('home');
+Route::get('/', [RoomController::class, 'index'])->name('home');
 
 Route::prefix('auth')
     ->controller(AuthController::class)
@@ -24,7 +23,6 @@ Route::prefix('auth')
         Route::post('/logout', 'logout')->name('auth.logout');
     });
 
-
 Route::prefix('perfil')
     ->middleware(AuthenticateMiddleware::class)
     ->controller(ProfileController::class)
@@ -32,12 +30,19 @@ Route::prefix('perfil')
         Route::get('/', 'edit')->name('profile.edit');
         Route::put('/', 'update')->name('profile.update');
 
-
         Route::get('/finalizar', 'create')->name('profile.create')
             ->middleware(HasNoClientMiddleware::class);
         Route::post('/finalizar', 'store')->name('profile.store')
             ->middleware(HasNoClientMiddleware::class);
     });
+
+Route::prefix('salas')
+    ->controller(RoomController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('room.index');
+        Route::get('/{id}', 'show')->name('room.show');
+    });
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/reservas', function () {
@@ -67,15 +72,7 @@ Route::prefix('avaliar')->controller(EvaluationController::class)->group(functio
     Route::post('/', 'store')->name('evaluation.store');
 });
 
-Route::get('/salas', function () {
-    return view('pages/salas/salas');
-});
-
-Route::get('/salas/detalhes', function () {
-    return view('pages/salas/detalhes');
-});
-
-Route::get('/salas/pagamento', function () {
+Route::get('/pagamento', function () {
     return view('pages/salas/pagamento');
 })->name("auth.pagamento");
 
@@ -86,21 +83,3 @@ Route::prefix('payment')->controller(PaymentController::class)->group(function (
 Route::get('/reservas/{id}', function () {
     return view('pages/rent/show');
 })->name('rent.show');
-
-
-//Rotas acessiveis por meio da interface
-// /auth/registrar
-// /auth/login
-// /salas/{id}
-
-// Rotas inacessiveis por meio da interface até o momento
-// /auth/finalizar-cadastro - Logica ainda não implementada
-// /auth/logout             - Botão ainda não criado
-// /admin/reservas          - Controller ainda não implementado
-// /admin/salas             - Controller ainda não implementado
-// /admin/salas/criar       - Controller ainda não implementado
-// /admin/pagamentos        - Controller ainda não implementado
-// /avaliar                 - Logica de relação ainda não implementada
-// /salas                   - Controller ainda não implementado
-// /reservas/{id}           - Controller ainda não implementado
-// /perfil                  - Controller ainda não implementado
