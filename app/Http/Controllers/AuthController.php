@@ -25,7 +25,7 @@ class AuthController extends Controller
         $formFields['type'] = 'user';
 
         User::create($formFields);
-        return redirect("/auth/login");
+        return redirect()->route("auth.login");
     }
 
     public function authenticate(Request $request)
@@ -35,12 +35,13 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('/');
+        if (!Auth::attempt($credentials)) {
+            return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
+        $request->session()->regenerate();
+        $user = User::find(Auth::id());
+        return redirect()->route($user->client == null ? 'profile.create' : 'home');
     }
 
     public function login()
@@ -54,16 +55,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect("/auth/login");
-    }
-
-    public function finishRegister()
-    {
-        return view('pages/auth/finish-register');
-    }
-
-    public function finishRegisterStore(Request $request)
-    {
-        return redirect("/");
+        return redirect()->route("auth.login");
     }
 }

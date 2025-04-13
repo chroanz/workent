@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Middleware\AuthenticateMiddleware;
-use App\Http\Controllers\EvaluationController;
-use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvaluationController;
+use App\Http\Middleware\AuthenticateMiddleware;
+use App\Http\Middleware\HasNoClientMiddleware;
 
 Route::get('/', function () {
     return view('pages/salas/salas');
@@ -21,15 +22,22 @@ Route::prefix('auth')
         Route::post('/login', 'authenticate')->name('auth.authenticate');
 
         Route::post('/logout', 'logout')->name('auth.logout');
-
-        Route::get('/finalizar-cadastro', 'finishRegister')
-            ->name('auth.finish-register')
-            ->middleware(AuthenticateMiddleware::class);
-        Route::post('/finalizar-cadastro', 'finishRegisterStore')
-            ->name('auth.finish-register.store')
-            ->middleware(AuthenticateMiddleware::class);
     });
 
+
+Route::prefix('perfil')
+    ->middleware(AuthenticateMiddleware::class)
+    ->controller(ProfileController::class)
+    ->group(function () {
+        Route::get('/', 'edit')->name('profile.edit');
+        Route::put('/', 'update')->name('profile.update');
+
+
+        Route::get('/finalizar', 'create')->name('profile.create')
+            ->middleware(HasNoClientMiddleware::class);
+        Route::post('/finalizar', 'store')->name('profile.store')
+            ->middleware(HasNoClientMiddleware::class);
+    });
 
 Route::prefix('admin')->group(function () {
     Route::get('/reservas', function () {
@@ -52,8 +60,6 @@ Route::prefix('reserva')->group(function () {
     Route::get('/detalhes-reserva', function () {
         return view('pages/reserva/detalhes');
     })->name('reserva.detalhes');
-
-
 });
 
 Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
@@ -81,11 +87,6 @@ Route::get('/reservas/{id}', function () {
     return view('pages/rent/show');
 })->name('rent.show');
 
-Route::prefix('perfil')->group(function () {
-    Route::get('/', function () {
-        return view('pages/profile/edit');
-    })->name('profile.edit');
-});
 
 //Rotas acessiveis por meio da interface
 // /auth/registrar
