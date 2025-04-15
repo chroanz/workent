@@ -10,7 +10,7 @@
     <div class="form-side">
         <div class="form-container">
             <h2>Avaliação de Sala</h2>
-            <form action="{{ route('avaliacao.enviar') }}" method="POST">
+            <form action="{{ route('evaluation.create') }}" method="POST">
                 
                 <label for="nota">Nota:</label>
                     <div class="radio-group">
