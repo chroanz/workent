@@ -42,7 +42,7 @@
       <div
         class="w-100 d-flex gap-5 align-items-start justify-content-between flex-wrap px-5">
         <div class="sala-descricao flex-grow-1 d-flex flex-column gap-2">
-          <h1 class="titulo-sala">Sala de Estudo</h1>
+          <h1 class="titulo-sala">{{ $room->name }}</h1>
           <div class="avaliacoes">
             <img src="{{ asset('img/estrela-amarela.svg') }}"
               alt="estrela amarela">
@@ -56,7 +56,7 @@
               alt="estrela apagada">
           </div>
           <ul>
-            <li>Oito lugares</li>
+            <li>{{ $room->capacity }} lugares</li>
             <li>Mesa com tomadas</li>
             <li>Ar-condicionado</li>
             <li>Televisão para apresentações</li>
@@ -64,10 +64,18 @@
         </div>
         <div
           class="sala-acoes flex-grow-1 d-flex flex-column gap-2 align-items-end">
-          <p><strong class="fs-1">R$ 89,90</strong> por dia</p>
+          <p>
+            <strong class="fs-1">
+              R$ {{ number_format($room->price, 2, ',', '.') }}
+            </strong>
+            /dia
+          </p>
           <p class="fs-5">Disponível de 8 da manhã até 18 da tarde</p>
-          <button class="btn-var-primary fs-5 py-2"
-            style="width: 250px" onclick="window.location.href = '/salas/pagamento';">Reservar</button>
+          <a href="/pagamento"
+            class="btn-var-primary fs-5 py-2 text-decoration-none text-center"
+            style="width: 250px">
+            Reservar
+          </a>
         </div>
       </div>
     </div>

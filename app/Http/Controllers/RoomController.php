@@ -11,7 +11,7 @@ class RoomController extends Controller
     {
         $rooms = Room::all();
 
-        return view('pages.salas.salas', [
+        return view('pages/room/index', [
             'rooms' => $rooms
         ]);
     }
@@ -20,7 +20,7 @@ class RoomController extends Controller
     {
         $room = Room::findOrFail($id);
 
-        return view('pages.salas.detalhes', [
+        return view('pages/room/show', [
             'room' => $room
         ]);
     }
