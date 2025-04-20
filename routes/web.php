@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\RentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\HasNoClientMiddleware;
@@ -43,7 +44,23 @@ Route::prefix('salas')
         Route::get('/{id}', 'show')->name('room.show');
     });
 
-Route::prefix('salas/{room_id}/pagamento')
+Route::prefix('salas/{room_id}/reservar')
+    ->middleware(AuthenticateMiddleware::class)
+    ->controller(RentController::class)
+    ->group(function () {
+        Route::get('/', 'create')->name("rent.create");
+        Route::post('/', 'store')->name('rent.store');
+    });
+
+Route::prefix('reservas')
+    ->middleware(AuthenticateMiddleware::class)
+    ->controller(RentController::class)
+    ->group(function () {
+        Route::get('/{rent_id}', 'show')->name("rent.show");
+    });
+
+Route::prefix('reservas/{rent_id}/pagamento')
+    ->middleware(AuthenticateMiddleware::class)
     ->controller(PaymentController::class)
     ->group(function () {
         Route::get('/', 'create')->name("payment.create");
@@ -68,21 +85,9 @@ Route::prefix('admin')->group(function () {
     })->name('admin.payment.index');
 });
 
-Route::prefix('reserva')->group(function () {
-    Route::get('/detalhes-reserva', function () {
-        return view('pages/reserva/detalhes');
-    })->name('reserva.detalhes');
-});
-
-Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
-    Route::get('/', 'create')->name('evaluation.create');
-    Route::post('/', 'store')->name('evaluation.store');
-});
-
-
-
-
-
-Route::get('/reservas/{id}', function () {
-    return view('pages/rent/show');
-})->name('rent.show');
+Route::prefix('avaliar')
+    ->controller(EvaluationController::class)
+    ->group(function () {
+        Route::get('/', 'create')->name('evaluation.create');
+        Route::post('/', 'store')->name('evaluation.store');
+    });

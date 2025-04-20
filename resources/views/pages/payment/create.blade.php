@@ -11,7 +11,7 @@
           alt="Imagem de pessoas felizes trabalhando">
       </div>
       <form method="POST"
-        action="{{ route('payment.store', ['room_id' => $room->id]) }}"
+        action="{{ route('payment.store', ['rent_id' => $rent->id]) }}"
         class="d-flex flex-column gap-2">
         @csrf
         <p class="fs-1">Formas de pagamento</p>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Models\Room;
+use App\Models\Rent;
 
 class PaymentController extends Controller
 {
@@ -13,19 +13,21 @@ class PaymentController extends Controller
         return Payment::all();
     }
 
-    public function create($room_id)
+    public function create($rent_id)
     {
-        $room = Room::findOrFail($room_id);
-        return view('pages/payment/create', compact('room'));
+        $rent = Rent::findOrFail($rent_id);
+        $room = $rent->room;
+        return view('pages/payment/create', compact('room', 'rent'));
     }
 
-    public function store($room_id)
+    public function store($rent_id)
     {
         $formFields = request()->validate([
             'price' => 'required|numeric|min:59.90',
             'payment_method' => 'required|string|in:credit_card,pix,debit_card',
         ]);
-        $formFields['room_id'] = $room_id;
+
+        $formFields['rent_id'] = $rent_id;
         if (Payment::create($formFields)) {
             return redirect()->route('home');
         }

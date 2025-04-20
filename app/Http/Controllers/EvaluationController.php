@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
-use Illuminate\Http\Request;
 
 class EvaluationController extends Controller
 {
@@ -12,9 +11,9 @@ class EvaluationController extends Controller
         return view('pages/evaluation/create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $formFields = $request->validate([
+        $formFields = request()->validate([
             'comment' => 'string|max:255',
             'stars' => 'required|integer|min:1|max:5',
         ]);
