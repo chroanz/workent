@@ -43,6 +43,13 @@ Route::prefix('salas')
         Route::get('/{id}', 'show')->name('room.show');
     });
 
+Route::prefix('salas/{room_id}/pagamento')
+    ->controller(PaymentController::class)
+    ->group(function () {
+        Route::get('/', 'create')->name("payment.create");
+        Route::post('/', 'store')->name('payment.store');
+    });
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/reservas', function () {
@@ -72,13 +79,9 @@ Route::prefix('avaliar')->controller(EvaluationController::class)->group(functio
     Route::post('/', 'store')->name('evaluation.store');
 });
 
-Route::get('/pagamento', function () {
-    return view('pages/salas/pagamento');
-})->name("auth.pagamento");
 
-Route::prefix('payment')->controller(PaymentController::class)->group(function () {
-    Route::post('/', 'store')->name('payment.store');
-});
+
+
 
 Route::get('/reservas/{id}', function () {
     return view('pages/rent/show');

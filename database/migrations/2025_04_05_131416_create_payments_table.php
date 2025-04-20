@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('price', 10, 2);
             $table->string('payment_method', 15);
-            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('rent_id');
             $table->timestamps();
         });
     }
