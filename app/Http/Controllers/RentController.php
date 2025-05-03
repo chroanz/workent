@@ -3,46 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rent;
-use Illuminate\Http\Request;
+use App\Models\Room;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // Carrega os aluguéis com seus relacionamentos
         $rents = Rent::with(['client', 'room', 'guests', 'payment', 'evaluation'])->get();
-        return view('pages.admin.rent.index', compact('rents'));
+        return view('pages/admin/rent/index', compact('rents'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show($rent_id)
     {
-        // Valida os dados recebidos
-        $validated = $request->validate([
+        $rent = Rent::findOrFail($rent_id);
+        return view('pages/rent/show', compact('rent'));
+    }
+
+    public function create($room_id)
+    {
+        $room = Room::findOrFail($room_id);
+        return view('pages/rent/create', compact('room'));
+    }
+
+    public function store($room_id)
+    {
+        $validated = request()->validate([
             'rentStart' => 'required|date',
-            'rentEnd' => 'required|date|after:rentStart',
-            'room_id' => 'required|exists:rooms,id'
+            'rentEnd' => 'required|date|after:rentStart'
         ]);
 
-        // TODO: Adicionar client_id do usuário logado
-        
-        // Cria o aluguel
-        $rent = Rent::create($validated);
-        return redirect()->route('admin.rent.index');
-    }
+        $clientId = User::findOrFail(Auth::id())->client->id;
+        $validated['client_id'] = $clientId;
+        $validated['room_id'] = $room_id;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Rent $rent)
-    {
-        // Carrega o aluguel com seus relacionamentos
-        $rent->load(['client', 'room', 'guests', 'payment', 'evaluation']);
-        return view('pages.rent.show', compact('rent'));
+        $rent = Rent::create($validated);
+        return redirect()->route('payment.create', ['rent_id' => $rent->id]);
     }
 }
