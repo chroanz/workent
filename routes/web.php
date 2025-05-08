@@ -99,6 +99,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/', 'index')->name('guest.index');
         Route::get('/{id}', 'show')->name('guest.show');
         Route::post('/', 'store')->name('guest.store');
+        Route::put('/{id}', 'update')->name('guest.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('guest.destroy')
+            ->middleware(AuthenticateMiddleware::class);
     });
 });
 
