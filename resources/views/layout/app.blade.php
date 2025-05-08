@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>@yield('title', 'Worknet')</title>
+  <title>@yield('title', 'Workent')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{{ asset('img/logo-worknet.png') }}"
     type="image/x-icon">

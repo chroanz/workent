@@ -1,30 +1,33 @@
 @extends('layout.app')
-@section('title', 'Avaliação de sala')
+@section('title', 'Avaliação de Sala')
 @section('content')
   @include('components.header')
-  <form action="{{ route('evaluation.store') }}" method="POST">
-    @csrf
-    <div>
-      <label for="stars">Avalie de 1 a 5</label>
-      <div>
-        @for ($i = 1; $i <= 5; $i++)
-          <label>
-            <input type="radio" name="stars" value="{{ $i }}">
-            {{ $i }}
-          </label>
-        @endfor
+  <div class="container">
+    <div class="image-side">
+      <img src="{{ asset('images/avaliacao.png') }}" alt="Avaliação" />
+    </div>
+    <div class="form-side">
+      <div class="form-container">
+        <h2>Avaliação de Sala</h2>
+        <form action="{{ route('evaluation.store') }}" method="POST">
+
+          <label for="nota">Nota:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="stars" value="1"> 1</label>
+            <label><input type="radio" name="stars" value="2"> 2</label>
+            <label><input type="radio" name="stars" value="3"> 3</label>
+            <label><input type="radio" name="stars" value="4"> 4</label>
+            <label><input type="radio" name="stars" value="5"> 5</label>
+          </div>
+
+          <label for="comentario">Comentário:</label>
+          <textarea id="comentario" name="comment"
+            placeholder="Digite o que você achou da sala">{{ old('comentario') }}</textarea>
+
+          <button type="submit">Enviar avaliação</button>
+        </form>
       </div>
     </div>
-
-    <label for="comment">Comentário (opcional)</label>
-    <div>
-      <textarea name="comment" id="comment" rows="4"
-        placeholder="Comente o que você achou da sala..."></textarea>
-    </div>
-
-    <div>
-      <button type="submit">Enviar avaliação</button>
-    </div>
-  </form>
+  </div>
   @include('components.footer')
 @endsection

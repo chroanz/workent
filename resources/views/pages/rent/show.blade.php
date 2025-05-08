@@ -1,46 +1,67 @@
 @extends('layout.app')
-@section('title', 'Admin - Lista de reservas')
+@section('title', 'Detalhe da reserva')
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/detalhes-reserva.css') }}">
+@endsection
 @section('content')
   @include('components.header')
-  <div>
-    <div>
-      <div class="image">
-        <img src="{{ asset('img/exemplo-sala.png') }}" alt="Imagem da sala">
+  <section class="detalhes-section d-flex p-2 justify-content-between">
+    <section
+      class="section-left h-100 d-flex flex-column p-4 justify-content-center align-items-center gap-4">
+      <figure class="w-100">
+        <img src="{{ asset('img/exemplo-sala.png') }}" alt="" class="w-100">
+      </figure>
+      <div class="area-titulos">
+        <h2>
+          {{ $rent->room->name }}
+        </h2>
+        <h3>
+          R$ {{ number_format($rent->room->price, 2, ',', '.') }}
+        </h3>
       </div>
-
-      <h2>Sala de reuniões</h2>
-      <p><strong>R$</strong> 89,90/dia</p>
-      <ul>
-        <li><strong>Capacidade:</strong> 8 pessoas</li>
-        <li><strong>Localização:</strong> Rua Exemplo, 123</li>
+      <ul class="lista">
+        <li class="lista-item">{{ $rent->room->capacity }} lugares</li>
+        <li class="lista-item">Mesa com tomadas</li>
+        <li class="lista-item">Ar-condicionado</li>
+        <li class="lista-item">Televisão para apresentação</li>
       </ul>
-      <ul>
-        <li><strong>Caracteristicas</strong></li>
-        <li>Mesa com tomadas</li>
-        <li>Wi-Fi</li>
-        <li>Televisão</li>
-        <li>Ar-condicionado</li>
-      </ul>
-    </div>
+    </section>
+    <section class="section-right h-100 p-5">
+      <form action="" class="w-100 p-4 d-flex flex-wrap gap-4">
+        <div class="espaco-40-por d-flex flex-column gap-2">
+          <label for="" class="label">Inicio</label>
+          <input class="input" type="date"
+            value="{{ explode(' ', $rent->rentStart)[0] }}" disabled>
+        </div>
+        <div class="espaco-40-por d-flex flex-column gap-2">
+          <label for="" class="label">Término</label>
+          <input class="input" type="date"
+            value="{{ explode(' ', $rent->rentEnd)[0] }}" disabled>
+        </div>
+        <div class="w-100 d-flex flex-column gap-2">
+          <label for="" class="label">Locatário</label>
+          <input class="input" type="text" value="{{ $rent->client->name }}"
+            disabled>
+        </div>
 
-    <div>
-      <p><strong>Início</strong> 05/01/1960</p>
-      <p><strong>Térmimo</strong> 10/05/2005</p>
+        <div class="w-100 d-flex flex-column gap-2">
+          <h4 class="label">Acompanhantes</h4>
+          <ul>
+            <li class="acompanhantes-name">Eduardo</li>
+            <li class="acompanhantes-name">Lucas</li>
+          </ul>
+        </div>
 
-      <p><strong>Locador</strong> Ciço Tadeu</p>
+        <div class="w-100 d-flex flex-column gap-2">
+          <label for="" class="label">Data de Pagamento</label>
+          <input class="input" type="date">
+        </div>
 
-      <div>
-        <strong>Convidados</strong>
-        <ul>
-          <li>Jhonatta Pietro</li>
-          <li>Caetano Segundo</li>
-          <li>Fabricio Carneiro Fortão</li>
-        </ul>
-      </div>
-
-      <p><strong>R$</strong> 889,90</p>
-      <button type="button">Editar</button>
-    </div>
-  </div>
-  @include('components.footer')
+        <div class="w-100 d-flex justify-content-between">
+          <button class="btn btn-outline-primary">Cancelar</button>
+          <button class="btn btn-primary">Editar</button>
+        </div>
+      </form>
+    </section>
+  </section>
 @endsection

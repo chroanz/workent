@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
-use Illuminate\Http\Client\Request;
 
 class RoomController extends Controller
 {
@@ -11,7 +10,7 @@ class RoomController extends Controller
     {
         $rooms = Room::all();
 
-        return view('pages.salas.salas', [
+        return view('pages/room/index', [
             'rooms' => $rooms
         ]);
     }
@@ -20,14 +19,12 @@ class RoomController extends Controller
     {
         $room = Room::findOrFail($id);
 
-        return view('pages.salas.detalhes', [
-            'room' => $room
-        ]);
+        return view('pages/room/show', compact('room'));
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $validate = $request->validate([
+        $validate = request()->validate([
             'name' => 'required|string|max:255',
             'capacity' => 'required|int',
             'price' => 'required|float'
