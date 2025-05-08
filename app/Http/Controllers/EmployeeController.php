@@ -29,12 +29,20 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = request()->validate([
+            'email' => 'required|email|max:50',
+            'name' => 'required|string|max:50',
+            'phone' => 'required|string|max:11'
+        ]);
+
+        Employee::addEmployeeByEmail($validate);
+
+        return redirect('/funcionarios')->with('success', 'Funcionário cadastrado com sucesso!');
     }
 
     public function create()
     {
-        return view('pages/users/create');
+        return view('pages.admin.users.create');
     }
     
     public function edit(Employee $employee)
@@ -49,7 +57,9 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return view('pages/users/show', [
+            'employee' => $employee
+        ]);
     }
 
     /**
@@ -57,7 +67,15 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $validate = request()->validate([
+            'user_id' => 'required|integer',
+            'name' => 'required|string|max:50',
+            'phone' => 'required|string|max:11'
+        ]);
+
+        $employee->update($validate);
+
+        return redirect('/funcionarios')->with('success', 'Funcionário atualizado com sucesso!');
     }
 
     /**
@@ -65,6 +83,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+
+        return redirect('/funcionarios')->with('success', 'Funcionário excluído com sucesso!');
     }
 }

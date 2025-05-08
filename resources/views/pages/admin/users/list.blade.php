@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>Lista de Funcionários</h3>
-                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Adicionar Funcionário</a>
+                    <a href="{{ route('employees.create') }}" class="btn btn-primary">Adicionar Funcionário</a>
                 </div>
 
                 <div class="card-body">
@@ -35,8 +35,8 @@
                                         <td>{{ $employee->name }}</td>
                                         <td>{{ $employee->phone }}</td>
                                         <td class="d-flex">
-                                            <a href="{{ route('admin.users.edit', $employee->id) }}" class="btn btn-sm btn-primary me-2">Editar</a>
-                                            <form action="{{ route('admin.users.destroy', $employee->id) }}" method="POST">
+                                            <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-sm btn-primary me-2">Editar</a>
+                                            <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</button>

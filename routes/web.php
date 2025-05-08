@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvaluationController;
@@ -83,6 +84,19 @@ Route::prefix('admin')->group(function () {
     Route::get('/pagamentos', function () {
         return view('pages/admin/payment/index');
     })->name('admin.payment.index');
+});
+
+Route::prefix('funcionarios')
+    ->controller(EmployeeController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('employees.list');
+        Route::get('/criar', 'create')->name('employees.create');
+        Route::get('/{employee}/editar', 'edit')->name('employees.edit');
+        Route::get('/{employee}', 'show')->name('employees.show');
+
+        Route::post('/', 'store')->name('employees.store');
+        Route::put('/{employee}', 'update')->name('employees.update');
+        Route::delete('/{employee}', 'destroy')->name('employees.destroy');
 });
 
 Route::prefix('avaliar')
