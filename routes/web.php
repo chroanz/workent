@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,6 +46,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/pagamentos', function () {
         return view('pages/admin/payment/index');
     })->name('admin.payment.index');
+
+    Route::prefix('convidados')->controller(GuestController::class)->group(function () {
+        Route::get('/', 'index')->name('guest.index');
+        Route::get('/{id}', 'show')->name('guest.show');
+        Route::post('/', 'store')->name('guest.store');
+    });
 });
 
 Route::prefix('avaliar')->controller(EvaluationController::class)->group(function () {
@@ -67,6 +74,8 @@ Route::prefix('perfil')->group(function () {
         return view('pages/profile/edit');
     })->name('profile.edit');
 });
+
+
 
 //Rotas acessiveis por meio da interface
 // /auth/registrar
