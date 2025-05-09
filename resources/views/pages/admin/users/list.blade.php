@@ -2,7 +2,7 @@
 @section('content')
 @include('components.header')
 
-<div class="container">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -32,8 +32,8 @@
                                 @forelse($employees as $employee)
                                     <tr>
                                         <td>{{ $employee->id }}</td>
-                                        <td>{{ $employee->name }}</td>
-                                        <td>{{ $employee->phone }}</td>
+                                        <td>{{ $employee->email }}</td>
+                                        <td>{{ $employee->type }}</td>
                                         <td class="d-flex">
                                             <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-sm btn-primary me-2">Editar</a>
                                             <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">

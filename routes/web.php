@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\RoomController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\HasNoClientMiddleware;
 
@@ -87,16 +88,17 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('funcionarios')
-    ->controller(EmployeeController::class)
+    ->middleware(AdminMiddleware::class)
+    ->controller(AuthController::class)
     ->group(function () {
-        Route::get('/', 'index')->name('employees.list');
-        Route::get('/criar', 'create')->name('employees.create');
-        Route::get('/{employee}/editar', 'edit')->name('employees.edit');
-        Route::get('/{employee}', 'show')->name('employees.show');
+        Route::get('/', 'employeeList')->name('employees.list');
+        Route::get('/criar', 'employeeCreate')->name('employees.create');
+        Route::get('/{employee}/editar', 'employeeEdit')->name('employees.edit');
+        Route::get('/{employee}', 'employeeShow')->name('employees.show');
 
-        Route::post('/', 'store')->name('employees.store');
-        Route::put('/{employee}', 'update')->name('employees.update');
-        Route::delete('/{employee}', 'destroy')->name('employees.destroy');
+        Route::post('/', 'employeeStore')->name('employees.store');
+        Route::put('/{employee}', 'employeeUpdate')->name('employees.update');
+        Route::delete('/{employee}', 'employeeDestroy')->name('employees.destroy');
 });
 
 Route::prefix('avaliar')

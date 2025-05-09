@@ -26,14 +26,25 @@
                             <label for="email" class="form-label">E-mail</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                         </div>
+                        
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
+
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
+                            <label for="password_confirmation" class="form-label">Repita a senha</label>
+                            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Tipo de usuário</label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="" disabled selected>Selecione o tipo de usuário</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         <a href="{{ route('employees.list') }}" class="btn btn-secondary">Cancelar</a>
                     </form>
