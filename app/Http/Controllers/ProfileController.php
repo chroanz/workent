@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        return view('pages/profile/profile');
+    }
+
     public function create()
     {
         return view('pages/profile/create');
