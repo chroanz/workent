@@ -28,7 +28,6 @@ Route::prefix('perfil')
     ->middleware(AuthenticateMiddleware::class)
     ->controller(ProfileController::class)
     ->group(function () {
-        Route::get('/me', 'index')->name('profile.index');
         Route::get('/', 'edit')->name('profile.edit');
         Route::put('/', 'update')->name('profile.update');
 

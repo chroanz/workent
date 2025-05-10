@@ -24,13 +24,15 @@
     </div>
     <div class="acesso-usuario">
       @auth
-          <a href="{{ route('profile.index') }}">
-              <img src="{{ asset('img/user-icon.png') }}" alt="User Icon" class="me-2">
-          </a>
+        <a href="{{ route('profile.edit') }}">
+          <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
+            class="me-2">
+        </a>
       @else
-          <a href="{{ route('auth.login') }}">
-              <img src="{{ asset('img/user-icon.png') }}" alt="User Icon" class="me-2">
-          </a>
+        <a href="{{ route('auth.login') }}">
+          <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
+            class="me-2">
+        </a>
       @endauth
     </div>
   </nav>
