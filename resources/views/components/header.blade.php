@@ -6,9 +6,14 @@
         class="logo">
     </a>
     <div class="barra-busca shadow-sm">
-      <div>
-        <a href="#" class="text-decoration-none text-dark">Salas</a>
-      </div>
+      @auth
+        <div>
+          <a href="{{ route('rent.index') }}"
+            class="text-decoration-none text-dark">
+            Alugueis
+          </a>
+        </div>
+      @endauth
       <div>
         <a href="#" class="text-decoration-none text-dark">Auditórios</a>
       </div>

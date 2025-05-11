@@ -11,7 +11,16 @@ class RentController extends Controller
 {
     public function index()
     {
-        $rents = Rent::with(['client', 'room', 'guests', 'payment', 'evaluation'])->get();
+        $isAdminUser = User::findOrFail(Auth::id())->isAdmin();
+        if (!$isAdminUser) {
+            $rents = Rent::with(['client', 'room', 'payment', 'evaluation'])
+                ->where('client_id', Auth::id())
+                ->get();
+
+            return view('pages/rent/index', compact('rents'));
+        }
+
+        $rents = Rent::with(['client', 'room', 'payment', 'evaluation'])->get();
         return view('pages/admin/rent/index', compact('rents'));
     }
 

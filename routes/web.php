@@ -57,6 +57,7 @@ Route::prefix('reservas')
     ->middleware(AuthenticateMiddleware::class)
     ->controller(RentController::class)
     ->group(function () {
+        Route::get('/', 'index')->name("rent.index");
         Route::get('/{rent_id}', 'show')->name("rent.show");
     });
 

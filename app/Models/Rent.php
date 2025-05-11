@@ -17,8 +17,8 @@ class Rent extends Model
     ];
 
     protected $casts = [
-        'rentStart' => 'datetime',
-        'rentEnd' => 'datetime'
+        'rentStart' => 'date',
+        'rentEnd' => 'date'
     ];
 
     public function client(): BelongsTo
