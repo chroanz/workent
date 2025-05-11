@@ -6,9 +6,14 @@
         class="logo">
     </a>
     <div class="barra-busca shadow-sm">
-      <div>
-        <a href="#" class="text-decoration-none text-dark">Salas</a>
-      </div>
+      @auth
+        <div>
+          <a href="{{ route('rent.index') }}"
+            class="text-decoration-none text-dark">
+            Alugueis
+          </a>
+        </div>
+      @endauth
       <div>
         <a href="#" class="text-decoration-none text-dark">Auditórios</a>
       </div>
@@ -23,10 +28,17 @@
       </div>
     </div>
     <div class="acesso-usuario">
-      <a href="{{ route('auth.login') }}">
-        <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
-          class="me-2">
-      </a>
+      @auth
+        <a href="{{ route('profile.edit') }}">
+          <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
+            class="me-2">
+        </a>
+      @else
+        <a href="{{ route('auth.login') }}">
+          <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
+            class="me-2">
+        </a>
+      @endauth
     </div>
   </nav>
 </header>

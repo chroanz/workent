@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+
     public function create()
     {
         return view('pages/profile/create');

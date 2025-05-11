@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
 use App\Models\Rent;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -23,11 +23,12 @@ class PaymentController extends Controller
     public function store($rent_id)
     {
         $formFields = request()->validate([
-            'price' => 'required|numeric|min:59.90',
             'payment_method' => 'required|string|in:credit_card,pix,debit_card',
         ]);
 
         $formFields['rent_id'] = $rent_id;
+        $formFields['price'] = Rent::findOrFail($rent_id)->room->price;
+
         if (Payment::create($formFields)) {
             return redirect()->route('home');
         }
