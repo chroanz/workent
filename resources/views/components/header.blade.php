@@ -33,6 +33,13 @@
           <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
             class="me-2">
         </a>
+        <form action="{{ route('auth.logout') }}" method="POST"
+          style="display: inline;">
+          @csrf
+          <button type="submit" class="btn btn-primary p-0 text-decoration-none">
+            Logout
+          </button>
+        </form>
       @else
         <a href="{{ route('auth.login') }}">
           <img src="{{ asset('img/user-icon.png') }}" alt="User Icon"
