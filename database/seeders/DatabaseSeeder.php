@@ -12,10 +12,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Existing seeds
         User::factory(12)
             ->has(Client::factory()->count(1))
             ->create();
-
+        
         Room::factory(8)->create();
+
+        $this->call([
+            admin_user_seed::class,
+        ]);
     }
 }

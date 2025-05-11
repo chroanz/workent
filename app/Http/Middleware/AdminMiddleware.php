@@ -20,6 +20,6 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->type == "admin") {
             return $next($request);
         }
-        return redirect()->route('auth.login');
+        return redirect()->route('home');
     }
 }
