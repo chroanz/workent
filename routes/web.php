@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EntranceValidationController;
@@ -93,6 +94,16 @@ Route::prefix('admin')->group(function () {
     Route::get('/pagamentos', function () {
         return view('pages/admin/payment/index');
     })->name('admin.payment.index');
+
+    Route::prefix('convidados')->controller(GuestController::class)->group(function () {
+        Route::get('/', 'index')->name('guest.index');
+        Route::get('/{id}', 'show')->name('guest.show');
+        Route::post('/', 'store')->name('guest.store');
+        Route::put('/{id}', 'update')->name('guest.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('guest.destroy')
+            ->middleware(AuthenticateMiddleware::class);
+    });
 });
 
 Route::prefix('admin/usuarios')
