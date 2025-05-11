@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EntranceValidationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvaluationController;
@@ -67,6 +68,12 @@ Route::prefix('reservas/{rent_id}/pagamento')
         Route::post('/', 'store')->name('payment.store');
     });
 
+Route::prefix('validar-entrada/{rent_id}')
+    ->controller(EntranceValidationController::class)
+    ->group(function () {
+        Route::get('/', 'show')->name("entrance-validation.show");
+        Route::post('/', 'validateEntrance')->name('entrance-validation.validate');
+    });
 
 Route::prefix('admin')->group(function () {
     Route::get('/reservas', function () {
