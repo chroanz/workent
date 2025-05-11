@@ -11,10 +11,12 @@ class RentController extends Controller
 {
     public function index()
     {
-        $isAdminUser = User::findOrFail(Auth::id())->isAdmin();
-        if (!$isAdminUser) {
+        $user = User::findOrFail(Auth::id());
+
+        if (!$user->isAdmin()) {
+            $clientId = $user->client->id;
             $rents = Rent::with(['client', 'room', 'payment', 'evaluation'])
-                ->where('client_id', Auth::id())
+                ->where('client_id', $clientId)
                 ->get();
 
             return view('pages/rent/index', compact('rents'));
@@ -26,7 +28,7 @@ class RentController extends Controller
 
     public function show($rent_id)
     {
-        $rent = Rent::findOrFail($rent_id);
+        $rent = Rent::with('payment')->findOrFail($rent_id);
         return view('pages/rent/show', compact('rent'));
     }
 
