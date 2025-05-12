@@ -20,4 +20,10 @@ class Room extends Model
     {
         return $this->hasMany(Rent::class);
     }
+
+    public function getAverageStars(): float
+    {
+        $room_stars = $this->rents->avg('evaluation.stars');
+        return $room_stars ?? 0;
+    }
 }

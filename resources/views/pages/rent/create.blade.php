@@ -15,6 +15,22 @@
         <label for="rentEnd">Rent End</label>
         <input type="date" id="rentEnd" name="rentEnd" required>
       </div>
+      <div>
+        <h3>Convidados</h3>
+        @for ($i = 0; $i < $room->capacity; $i++)
+          <div>
+            <label for="guest_name_{{ $i }}">Nome do convidado
+              {{ $i + 1 }}</label>
+            <input type="text" id="guest_name_{{ $i }}"
+              name="guests[{{ $i }}][name]">
+          </div>
+          <div>
+            <label for="guest_email_{{ $i }}">Email</label>
+            <input type="email" id="guest_email_{{ $i }}"
+              name="guests[{{ $i }}][email]">
+          </div>
+        @endfor
+      </div>
       <button type="submit">Submit</button>
     </form>
   </div>

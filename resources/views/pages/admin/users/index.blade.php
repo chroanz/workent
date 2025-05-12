@@ -9,7 +9,7 @@
           <div
             class="card-header d-flex justify-content-between align-items-center">
             <h3>Lista de usuários</h3>
-            <a href="{{ route('user.create') }}" class="btn btn-primary">
+            <a href="{{ route('user.admin.create') }}" class="btn btn-primary">
               Adicionar usuário
             </a>
           </div>
@@ -38,7 +38,7 @@
                       <td>{{ $user->email }}</td>
                       <td>{{ $user->type }}</td>
                       <td class="d-flex">
-                        <a href="{{ route('user.edit', $user->id) }}"
+                        <a href="{{ route('user.admin.edit', $user->id) }}"
                           class="btn btn-sm btn-primary me-2">Editar</a>
                       </td>
                     </tr>

@@ -15,22 +15,27 @@ class PaymentController extends Controller
 
     public function create($rent_id)
     {
-        $rent = Rent::findOrFail($rent_id);
-        $room = $rent->room;
-        return view('pages/payment/create', compact('room', 'rent'));
+        $rent = Rent::with('room')->findOrFail($rent_id);
+        $daysRented = date_diff($rent->rentStart, $rent->rentEnd)->days;
+        $totalPrice = $rent->room->price * $daysRented;
+        return view('pages/payment/create', compact('rent', 'daysRented', 'totalPrice'));
     }
 
     public function store($rent_id)
     {
-        $formFields = request()->validate([
+        $payment = request()->validate([
             'payment_method' => 'required|string|in:credit_card,pix,debit_card',
         ]);
 
-        $formFields['rent_id'] = $rent_id;
-        $formFields['price'] = Rent::findOrFail($rent_id)->room->price;
+        $payment['rent_id'] = $rent_id;
 
-        if (Payment::create($formFields)) {
-            return redirect()->route('home');
-        }
+        $rent = Rent::with('room')->findOrFail($rent_id);
+        $daysRented = date_diff($rent->rentStart, $rent->rentEnd)->days;
+        $totalPrice = $rent->room->price * $daysRented;
+        $payment['price'] = $totalPrice;
+
+        Payment::create($payment);
+
+        return redirect()->route('rent.index');
     }
 }

@@ -21,7 +21,8 @@
                 </ul>
               </div>
             @endif
-            <form action="{{ route('user.update', $user->id) }}" method="POST">
+            <form action="{{ route('user.admin.update', $user->id) }}"
+              method="POST">
               @csrf
               @method('PUT')
 
@@ -66,7 +67,7 @@
               <button type="submit" class="btn btn-primary">
                 Salvar Alterações
               </button>
-              <a href="{{ route('user.index') }}" class="btn btn-secondary">
+              <a href="{{ route('user.admin.index') }}" class="btn btn-secondary">
                 Cancelar
               </a>
             </form>

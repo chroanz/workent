@@ -33,17 +33,25 @@
           </div>
           <div class="d-flex gap-2 justify-content-between align-items-center">
             <div>
-              <p class="fs-1">R$ {{ number_format($room->price, 2, ',', '.') }}
+              <p class="fs-3">
+                R$ {{ number_format($rent->room->price, 2, ',', '.') }}/dia
               </p>
-              <input type="number" name="price" value="{{ $room->price }}"
-                class="d-none">
+              <p class="fs-3">{{ $daysRented }} dias</p>
+              <hr>
+              <p class="fs-1">
+                R$ {{ number_format($totalPrice, 2, ',', '.') }}
+
+              </p>
+              <input type="number" name="price"
+                value="{{ $rent->room->price }}" class="d-none">
             </div>
             <div>
               {{-- <input type="date" name="data" id="data" value="{{ date('Y-m-d') }}" class="form-control"> --}}
             </div>
           </div>
-          <button type="submit" class="btn-var-primary">Confirmar e
-            pagar</button>
+          <button type="submit" class="btn-var-primary">
+            Confirmar e pagar
+          </button>
         </div>
       </form>
     </div>

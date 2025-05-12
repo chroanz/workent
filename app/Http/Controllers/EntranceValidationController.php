@@ -6,9 +6,8 @@ use App\Models\Rent;
 
 class EntranceValidationController extends Controller
 {
-    public function show()
+    public function show($rent_id)
     {
-        $rent_id = request('rent_id');
         $rent = Rent::findOrFail($rent_id);
 
         return view('pages/entrance-validation/show', [
@@ -18,16 +17,27 @@ class EntranceValidationController extends Controller
         ]);
     }
 
-    public function validateEntrance()
+    public function validateEntrance($rent_id)
     {
         $validatedFields = request()->validate([
             'email' => 'required|email',
             'entrance_code' => 'required|string',
         ]);
-        $rent_id = request()->route('rent_id');
+
         $rent = Rent::findOrFail($rent_id);
 
-        //fazer validação do email na lista de convidados e o código
-        //requer Guest controller implementado
+        $guest = $rent->guests->firstWhere('email', $validatedFields['email']);
+
+        if ($guest && $guest->entrance_code === $validatedFields['entrance_code']) {
+
+            return redirect()
+                ->back()
+                ->with('success', 'Entrada validada com sucesso.');
+        }
+
+        return redirect()
+            ->back()
+            ->with('failure', 'Código de entrada ou usuário inválidos.')
+            ->withInput();
     }
 }

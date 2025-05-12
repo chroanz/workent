@@ -7,16 +7,22 @@
     </a>
     <div class="barra-busca shadow-sm">
       @auth
-        <div>
-          <a href="{{ route('rent.index') }}"
-            class="text-decoration-none text-dark">
-            Alugueis
-          </a>
-        </div>
+        @if (auth()->user()->isAdmin())
+          <div>
+            <a href="{{ route('admin.rent.index') }}"
+              class="text-decoration-none text-dark">
+              Painel de admin
+            </a>
+          </div>
+        @else
+          <div>
+            <a href="{{ route('rent.index') }}"
+              class="text-decoration-none text-dark">
+              Alugueis
+            </a>
+          </div>
+        @endif
       @endauth
-      <div>
-        <a href="#" class="text-decoration-none text-dark">Auditórios</a>
-      </div>
       <div>
         <input type="search" name="busca" id="busca" class="border-0"
           placeholder="Pesquisar">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guest;
 use App\Models\Rent;
 use App\Models\Room;
 use App\Models\User;
@@ -28,7 +29,7 @@ class RentController extends Controller
 
     public function show($rent_id)
     {
-        $rent = Rent::with('payment')->findOrFail($rent_id);
+        $rent = Rent::with('payment', 'guests')->findOrFail($rent_id);
         return view('pages/rent/show', compact('rent'));
     }
 
@@ -42,14 +43,30 @@ class RentController extends Controller
     {
         $validated = request()->validate([
             'rentStart' => 'required|date',
-            'rentEnd' => 'required|date|after:rentStart'
+            'rentEnd' => 'required|date|after:rentStart',
+            'guests' => 'nullable|array',
+            'guests.*.name' => 'nullable|string|max:255',
+            'guests.*.email' => 'nullable|email',
         ]);
+
+        $guests = array_filter($validated['guests'] ?? [], function ($guest) {
+            return !empty($guest['name']) && !empty($guest['email']);
+        });
+        unset($validated['guests']);
 
         $clientId = User::findOrFail(Auth::id())->client->id;
         $validated['client_id'] = $clientId;
         $validated['room_id'] = $room_id;
 
         $rent = Rent::create($validated);
+
+        if (!empty($guests)) {
+            for ($i = 0; $i < sizeof($guests); $i++) {
+                $guests[$i]['rent_id'] = $rent->id;
+                $guests[$i]['entrance_code'] = "entrance_code";
+            }
+            Guest::insert($guests);
+        }
         return redirect()->route('payment.create', ['rent_id' => $rent->id]);
     }
 }

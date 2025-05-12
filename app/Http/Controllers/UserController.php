@@ -34,7 +34,7 @@ class UserController extends Controller
         User::create($formFields);
 
         return redirect()
-            ->route('user.index')
+            ->route('user.admin.index')
             ->with('success', 'Usuário cadastrado com sucesso!');
     }
 
@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->update($validatedFields);
 
         return redirect()
-            ->route('user.index')
+            ->route('user.admin.index')
             ->with('success', 'Usuário atualizado com sucesso!');
     }
 }

@@ -27,6 +27,7 @@
                     <th>Data de Início</th>
                     <th>Data de Término</th>
                     <th>Pagamento</th>
+                    <th>Avaliação</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
@@ -47,6 +48,16 @@
                           </a>
                         @endif
                       </td>
+                      <td>
+                        @if ($rent->payment && !$rent->evaluation)
+                          <a href="{{ route('evaluation.create', $rent->id) }}"
+                            class="btn btn-sm btn-primary me-2">
+                            Avaliar
+                          </a>
+                        @else
+                          {{ $rent->evaluation ? $rent->evaluation->stars . ' estrelas' : '' }}
+                        @endif
+                      </td>
                       <td class="d-flex">
                         <a href="{{ route('rent.show', $rent->id) }}"
                           class="btn btn-sm btn-primary me-2">
@@ -56,6 +67,7 @@
                           class="btn btn-sm btn-primary me-2">
                           Validar entrada
                         </a>
+
                       </td>
                     </tr>
                   @empty

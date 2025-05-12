@@ -13,6 +13,7 @@ class Evaluation extends Model
     protected $fillable = [
         'comment',
         'stars',
+        'rent_id',
     ];
 
     public function rent(): BelongsTo

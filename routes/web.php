@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EntranceValidationController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\AuthenticateMiddleware;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Middleware\HasNoClientMiddleware;
+use App\Http\Middleware\AuthenticateMiddleware;
+use App\Http\Controllers\EntranceValidationController;
 
 Route::get('/', [RoomController::class, 'index'])->name('home');
 
@@ -62,14 +61,13 @@ Route::prefix('reservas')
     ->group(function () {
         Route::get('/', 'index')->name("rent.index");
         Route::get('/{rent_id}', 'show')->name("rent.show");
-    });
 
-Route::prefix('reservas/{rent_id}/pagamento')
-    ->middleware(AuthenticateMiddleware::class)
-    ->controller(PaymentController::class)
-    ->group(function () {
-        Route::get('/', 'create')->name("payment.create");
-        Route::post('/', 'store')->name('payment.store');
+        Route::prefix('{rent_id}/pagamento')
+            ->controller(PaymentController::class)
+            ->group(function () {
+                Route::get('/', 'create')->name("payment.create");
+                Route::post('/', 'store')->name('payment.store');
+            });
     });
 
 Route::prefix('validar-entrada/{rent_id}')
@@ -80,10 +78,6 @@ Route::prefix('validar-entrada/{rent_id}')
     });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/reservas', function () {
-        return view('pages/admin/rent/index');
-    })->name('admin.rent.index');
-
     Route::get('/salas', function () {
         return view('pages/admin/room/index');
     })->name('admin.room.index');
@@ -94,31 +88,28 @@ Route::prefix('admin')->group(function () {
     Route::get('/pagamentos', function () {
         return view('pages/admin/payment/index');
     })->name('admin.payment.index');
-
-    Route::prefix('convidados')->controller(GuestController::class)->group(function () {
-        Route::get('/', 'index')->name('guest.index');
-        Route::get('/{id}', 'show')->name('guest.show');
-        Route::post('/', 'store')->name('guest.store');
-        Route::put('/{id}', 'update')->name('guest.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('guest.destroy')
-            ->middleware(AuthenticateMiddleware::class);
-    });
 });
 
-Route::prefix('admin/usuarios')
+Route::prefix('admin')
     ->middleware(AdminMiddleware::class)
-    ->controller(UserController::class)
     ->group(function () {
-        Route::get('/', 'index')->name('user.index');
-        Route::get('/criar', 'create')->name('user.create');
-        Route::get('/{user_id}/editar', 'edit')->name('user.edit');
+        Route::prefix('usuarios')
+            ->controller(UserController::class)
+            ->group(function () {
+                Route::get('/', 'index')->name('user.admin.index');
+                Route::get('/criar', 'create')->name('user.admin.create');
+                Route::get('/{user_id}/editar', 'edit')->name('user.admin.edit');
 
-        Route::post('/', 'store')->name('user.store');
-        Route::put('/{user_id}', 'update')->name('user.update');
+                Route::post('/', 'store')->name('user.admin.store');
+                Route::put('/{user_id}', 'update')->name('user.admin.update');
+            });
+
+        Route::get('/reservas', [RentController::class, 'index'])
+            ->name("admin.rent.index");
     });
 
-Route::prefix('avaliar')
+Route::prefix('avaliar/{rent_id}')
+    ->middleware(AuthenticateMiddleware::class)
     ->controller(EvaluationController::class)
     ->group(function () {
         Route::get('/', 'create')->name('evaluation.create');

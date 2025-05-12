@@ -12,6 +12,7 @@ class Rent extends Model
     protected $fillable = [
         'rentStart',
         'rentEnd',
+        'guests',
         'client_id',
         'room_id'
     ];
@@ -31,10 +32,10 @@ class Rent extends Model
         return $this->belongsTo(Room::class);
     }
 
-    // public function guests(): HasMany
-    // {
-    //     return $this->hasMany(Guest::class);
-    // }
+    public function guests(): HasMany
+    {
+        return $this->hasMany(Guest::class);
+    }
 
     public function payment(): HasOne
     {

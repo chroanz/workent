@@ -44,16 +44,15 @@
         <div class="sala-descricao flex-grow-1 d-flex flex-column gap-2">
           <h1 class="titulo-sala">{{ $room->name }}</h1>
           <div class="avaliacoes">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-apagada.svg') }}"
-              alt="estrela apagada">
+            @for ($i = 0; $i < 5; $i++)
+              @if ($i < $room->getAverageStars())
+                <img src="{{ asset('img/estrela-amarela.svg') }}"
+                  alt="estrela amarela">
+              @else
+                <img src="{{ asset('img/estrela-apagada.svg') }}"
+                  alt="estrela apagada">
+              @endif
+            @endfor
           </div>
           <ul>
             <li>{{ $room->capacity }} lugares</li>

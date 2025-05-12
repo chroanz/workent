@@ -22,7 +22,7 @@
             <div class="d-flex gap-1 align-items-baseline">
               <img src="{{ asset('img/estrela-apagada.svg') }}"
                 alt="Estrela apagada">
-              <p>4.91</p>
+              <p>{{ number_format($room->getAverageStars(), 2) }}</p>
             </div>
           </div>
         </a>
