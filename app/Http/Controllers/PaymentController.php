@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function create($rent_id)
     {
         $rent = Rent::with('room')->findOrFail($rent_id);
-        $daysRented = date_diff($rent->rentStart, $rent->rentEnd)->days;
+        $daysRented = $this->calculateRentDays($rent);
         $totalPrice = $rent->room->price * $daysRented;
         return view('pages/payment/create', compact('rent', 'daysRented', 'totalPrice'));
     }
@@ -30,12 +30,17 @@ class PaymentController extends Controller
         $payment['rent_id'] = $rent_id;
 
         $rent = Rent::with('room')->findOrFail($rent_id);
-        $daysRented = date_diff($rent->rentStart, $rent->rentEnd)->days;
+        $daysRented = $this->calculateRentDays($rent);
         $totalPrice = $rent->room->price * $daysRented;
         $payment['price'] = $totalPrice;
 
         Payment::create($payment);
 
         return redirect()->route('rent.index');
+    }
+
+    private function calculateRentDays(Rent $rent): int
+    {
+        return date_diff($rent->rentStart, $rent->rentEnd)->days + 1;
     }
 }

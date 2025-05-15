@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('capacity');
             $table->float('price');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

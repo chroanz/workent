@@ -13,7 +13,8 @@
             <div>
               <p class="fs-5">{{ $room->name }}</p>
               <p>Até {{ $room->capacity }} pessoas</p>
-              <p>Disponível agora em 02/04/2025</p>
+              <p>Disponível em
+                {{ $room->getWhenRoomIsFree()->format('d/m/Y') }}</p>
               <p>
                 <strong>R$ {{ number_format($room->price, 2, ',', '.') }}</strong>
                 das 09h às 18h

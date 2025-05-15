@@ -56,9 +56,7 @@
           </div>
           <ul>
             <li>{{ $room->capacity }} lugares</li>
-            <li>Mesa com tomadas</li>
-            <li>Ar-condicionado</li>
-            <li>Televisão para apresentações</li>
+            <li>{{ $room->description }}</li>
           </ul>
         </div>
         <div
@@ -69,7 +67,9 @@
             </strong>
             /dia
           </p>
-          <p class="fs-5">Disponível de 8 da manhã até 18 da tarde</p>
+          <p class="fs-5">Disponível de 8h até 18h</p>
+          <p class="fs-5">A partir do dia
+            {{ $room->getWhenRoomIsFree()->format('d/m/Y') }}</p>
           <a href="{{ route('rent.create', ['room_id' => $room->id]) }}"
             class="btn-var-primary fs-5 py-2 text-decoration-none text-center"
             style="width: 250px">

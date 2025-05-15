@@ -42,8 +42,8 @@ class RentController extends Controller
     public function store($room_id)
     {
         $validated = request()->validate([
-            'rentStart' => 'required|date',
-            'rentEnd' => 'required|date|after:rentStart',
+            'rentStart' => 'required|date|after_or_equal:today',
+            'rentEnd' => 'required|date|after_or_equal:rentStart',
             'guests' => 'nullable|array',
             'guests.*.name' => 'nullable|string|max:255',
             'guests.*.email' => 'nullable|email',
