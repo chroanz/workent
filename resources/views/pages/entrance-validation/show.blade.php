@@ -1,4 +1,4 @@
-git@extends('layout.app')
+@extends('layout.app')
 @section('content')
   @include('components.header')
   <div class="container py-5 d-flex justify-content-center " style="height: 600px;">
