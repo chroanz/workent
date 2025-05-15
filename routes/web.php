@@ -63,6 +63,15 @@ Route::prefix('reservas')
         Route::get('/{rent_id}', 'show')->name("rent.show");
     });
 
+Route::prefix('reservas/{rent_id}/avaliar')
+   ->middleware(AuthenticateMiddleware::class)
+   ->controller(EvaluationController::class)
+   ->group(function () {
+       Route::get('/', 'create')->name('evaluation.create');
+       Route::post('/', 'store')->name('evaluation.store');
+   });
+
+
 Route::prefix('reservas/{rent_id}/pagamento')
     ->middleware(AuthenticateMiddleware::class)
     ->controller(PaymentController::class)
@@ -108,10 +117,3 @@ Route::prefix('funcionarios')
         Route::put('/{employee}', 'employeeUpdate')->name('employees.update');
         Route::delete('/{employee}', 'employeeDestroy')->name('employees.destroy');
 });
-
-Route::prefix('avaliar')
-    ->controller(EvaluationController::class)
-    ->group(function () {
-        Route::get('/', 'create')->name('evaluation.create');
-        Route::post('/', 'store')->name('evaluation.store');
-    });
