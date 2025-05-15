@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Evaluation extends Model
+class Guest extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'comment',
-        'stars',
-        'rent_id',
+        'name',
+        'email',
+        'entrance_code',
+        'rent_id'
     ];
 
-    public function rent(): BelongsTo
+    function rent(): BelongsTo
     {
         return $this->belongsTo(Rent::class);
     }

@@ -2,18 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Evaluation extends Model
+class Payment extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'comment',
-        'stars',
-        'rent_id',
+        'price',
+        'payment_method',
+        'rent_id'
     ];
 
     public function rent(): BelongsTo
