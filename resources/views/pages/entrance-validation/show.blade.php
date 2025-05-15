@@ -1,4 +1,4 @@
-@extends('layout.app')
+git@extends('layout.app')
 @section('content')
   @include('components.header')
   <div class="container py-5 d-flex justify-content-center " style="height: 600px;">
@@ -52,13 +52,15 @@
       </div>
 
       <button class="btn btn-azul-escuro w-100" type="submit">Validar</button>
+
       @if (session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
           {{ session('success') }}
         </div>
       @endif
+
       @if (session('failure'))
-        <div class="alert alert-error">
+        <div class="alert alert-danger mt-3">
           {{ session('failure') }}
         </div>
       @endif
@@ -71,6 +73,24 @@
       background-color: #1D227C;
       color: white;
       border: none;
+    }
+
+    .alert {
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 16px;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+      color: #155724;
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      color: #721c24;
     }
   </style>
 
