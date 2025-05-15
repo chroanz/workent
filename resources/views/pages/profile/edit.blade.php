@@ -5,7 +5,7 @@
 
   <div class="container my-5">
   <div class="row justify-content-center align-items-center"> 
-    <div class="col justify-content-center ">
+    <div class="col d-flex justify-content-center">
       <div class=" placeholder w-50 p-4 ">
         
 
