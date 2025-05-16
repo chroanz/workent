@@ -14,7 +14,7 @@
         <figure class="w-100">
           <img src="{{ asset('img/exemplo-sala.png') }}" alt="" class="w-100">
         </figure>
-       
+
         <ul class="lista">
           <li class="lista-item">Mesa com tomadas</li>
           <li class="lista-item">Ar-condicionado</li>
@@ -26,11 +26,11 @@
             @csrf
             <div class="d-flex gap-2">
               <div class="w-50 d-flex flex-column gap-2 ">
-                <label for="rentStart" class="label">Rent Start</label>
+                <label for="rentStart" class="label">Início do Aluguel</label>
                 <input type="date" id="rentStart" name="rentStart" required class="w-75 input" >
               </div>
               <div class="w-50 d-flex flex-column gap-2">
-                <label for="rentEnd" class="label">Rent End</label>
+                <label for="rentEnd" class="label">Final do Aluguel</label>
                 <input type="date" id="rentEnd" name="rentEnd" required class="w-75 input">
               </div>
             </div>
@@ -38,7 +38,7 @@
               <div class="area-titulos">
                 <h3 class="left">Convidados</h3>
               </div>
-              
+
               @for ($i = 0; $i < $room->capacity; $i++)
                 <div class="d-flex flex-column gap-2">
                   <label for="guest_name_{{ $i }}" class="label">Nome do convidado
@@ -60,6 +60,6 @@
         </form>
       </section>
     </section>
-    
+
   @include('components.footer')
 @endsection
