@@ -53,13 +53,13 @@
                 </div>
               @endfor
             </div>
-            <div>
-              <button type="submit" class="button">Submit</button>
+            <div class="mb-5">
+              <button type="submit" class="button">Enviar</button>
             </div>
           </form>
-        </form>
       </section>
     </section>
-
-  @include('components.footer')
+    <div class="mt-5 pt-5 mb-5">
+        @include('components.footer')
+    </div>
 @endsection
