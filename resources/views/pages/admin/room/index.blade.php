@@ -7,9 +7,7 @@
   @include('components.header')
   <div class="listagem-container">
     <h2 class="title">Salas</h2>
-    <a href="/salas/criar">
-      criar sala
-    </a>
+    <a href="{{ route('admin.room.create') }}">Criar Sala</a>
     <table>
       <thead>
         <tr>

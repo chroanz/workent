@@ -42,4 +42,8 @@ class RoomController extends Controller
             'rooms' => $rooms
         ]);
     }
+    public function create()
+    {
+        return view('pages/admin/room/create');
+    }
 }
