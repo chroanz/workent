@@ -34,4 +34,12 @@ class RoomController extends Controller
 
         return redirect('/salas');
     }
+
+    public function adminIndex()
+    {
+        $rooms = Room::all();
+        return view('pages/admin/room/index', [
+            'rooms' => $rooms
+        ]);
+    }
 }

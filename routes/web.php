@@ -78,9 +78,6 @@ Route::prefix('validar-entrada/{rent_id}')
     });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/salas', function () {
-        return view('pages/admin/room/index');
-    })->name('admin.room.index');
     Route::get('/salas/criar', function () {
         return view('pages/admin/room/create');
     })->name('admin.room.create');
@@ -106,6 +103,13 @@ Route::prefix('admin')
 
         Route::get('/reservas', [RentController::class, 'index'])
             ->name("admin.rent.index");
+
+        Route::prefix('/salas')
+            ->controller(RoomController::class)
+            ->group(function () {
+                Route::get('/', 'adminIndex')->name("admin.room.index");
+                Route::get('/criar', 'create')->name("admin.room.create");
+            });
     });
 
 Route::prefix('avaliar/{rent_id}')
