@@ -3,21 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
+use App\Models\Rent;
 
 class EvaluationController extends Controller
 {
-    public function create()
+    public function create($rent_id)
     {
-        return view('pages/evaluation/create');
+        $rent = Rent::with(['payment', 'evaluation'])->findOrFail($rent_id);
+        return view('pages/evaluation/create', compact('rent'));
     }
 
-    public function store()
+    public function store($rent_id)
     {
-        $formFields = request()->validate([
-            'comment' => 'string|max:255',
+        $evaluation = request()->validate([
+            'comment' => 'nullable|string|max:255',
             'stars' => 'required|integer|min:1|max:5',
         ]);
-        Evaluation::create($formFields);
-        return redirect('/');
+        $evaluation['rent_id'] = $rent_id;
+        Evaluation::create($evaluation);
+        return redirect()
+            ->route('rent.show', $rent_id)
+            ->with('success', 'Avaliação enviada com sucesso!');
     }
 }

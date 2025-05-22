@@ -6,6 +6,13 @@
       <form action="{{ route('auth.store') }}" method="POST"
         class="bg-secondary-color form-cadastro">
         @csrf
+
+        <a href="{{ route('home') }}"
+          class="w-100 d-flex justify-content-center align-items-center">
+          <img src="{{ asset('img/logo-horizontal.png') }}" alt=""
+            class="w-50">
+        </a>
+
         <h2 class="title-var">Entrar na conta</h2>
         <div class="d-flex flex-column w-75">
           <label for="" class="label-var">Email</label>

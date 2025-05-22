@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
 use App\Models\Rent;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -15,21 +15,32 @@ class PaymentController extends Controller
 
     public function create($rent_id)
     {
-        $rent = Rent::findOrFail($rent_id);
-        $room = $rent->room;
-        return view('pages/payment/create', compact('room', 'rent'));
+        $rent = Rent::with('room')->findOrFail($rent_id);
+        $daysRented = $this->calculateRentDays($rent);
+        $totalPrice = $rent->room->price * $daysRented;
+        return view('pages/payment/create', compact('rent', 'daysRented', 'totalPrice'));
     }
 
     public function store($rent_id)
     {
-        $formFields = request()->validate([
-            'price' => 'required|numeric|min:59.90',
+        $payment = request()->validate([
             'payment_method' => 'required|string|in:credit_card,pix,debit_card',
         ]);
 
-        $formFields['rent_id'] = $rent_id;
-        if (Payment::create($formFields)) {
-            return redirect()->route('home');
-        }
+        $payment['rent_id'] = $rent_id;
+
+        $rent = Rent::with('room')->findOrFail($rent_id);
+        $daysRented = $this->calculateRentDays($rent);
+        $totalPrice = $rent->room->price * $daysRented;
+        $payment['price'] = $totalPrice;
+
+        Payment::create($payment);
+
+        return redirect()->route('rent.index');
+    }
+
+    private function calculateRentDays(Rent $rent): int
+    {
+        return date_diff($rent->rentStart, $rent->rentEnd)->days + 1;
     }
 }

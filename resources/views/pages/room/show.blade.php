@@ -44,22 +44,19 @@
         <div class="sala-descricao flex-grow-1 d-flex flex-column gap-2">
           <h1 class="titulo-sala">{{ $room->name }}</h1>
           <div class="avaliacoes">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-amarela.svg') }}"
-              alt="estrela amarela">
-            <img src="{{ asset('img/estrela-apagada.svg') }}"
-              alt="estrela apagada">
+            @for ($i = 0; $i < 5; $i++)
+              @if ($i < $room->getAverageStars())
+                <img src="{{ asset('img/estrela-amarela.svg') }}"
+                  alt="estrela amarela">
+              @else
+                <img src="{{ asset('img/estrela-apagada.svg') }}"
+                  alt="estrela apagada">
+              @endif
+            @endfor
           </div>
           <ul>
             <li>{{ $room->capacity }} lugares</li>
-            <li>Mesa com tomadas</li>
-            <li>Ar-condicionado</li>
-            <li>Televisão para apresentações</li>
+            <li>{{ $room->description }}</li>
           </ul>
         </div>
         <div
@@ -70,7 +67,9 @@
             </strong>
             /dia
           </p>
-          <p class="fs-5">Disponível de 8 da manhã até 18 da tarde</p>
+          <p class="fs-5">Disponível de 8h até 18h</p>
+          <p class="fs-5">A partir do dia
+            {{ $room->getWhenRoomIsFree()->format('d/m/Y') }}</p>
           <a href="{{ route('rent.create', ['room_id' => $room->id]) }}"
             class="btn-var-primary fs-5 py-2 text-decoration-none text-center"
             style="width: 250px">

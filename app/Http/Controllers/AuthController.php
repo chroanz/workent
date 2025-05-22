@@ -9,6 +9,13 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    protected User $model;
+
+    public function __construct()
+    {
+        $this->model = new User();
+    }
+
     public function create()
     {
         return view('pages/auth/register');
@@ -41,7 +48,11 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
         $user = User::find(Auth::id());
-        return redirect()->route($user->client == null ? 'profile.create' : 'home');
+        return redirect()->route(
+            $user->client == null && !$user->isAdmin()
+                ? 'profile.create'
+                : 'home'
+        );
     }
 
     public function login()

@@ -17,7 +17,7 @@ class RoomController extends Controller
 
     public function show(int $id)
     {
-        $room = Room::findOrFail($id);
+        $room = Room::with('rents')->findOrFail($id);
 
         return view('pages/room/show', compact('room'));
     }

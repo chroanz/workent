@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+
     public function create()
     {
         return view('pages/profile/create');
@@ -18,7 +19,7 @@ class ProfileController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'required|min:4',
-            'birthday' => 'required',
+            'birthday' => 'required|date|before_or_equal:today',
             'address' => 'required|min:4'
         ]);
 

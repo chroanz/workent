@@ -2,17 +2,20 @@
 @section('title', 'Avaliação de Sala')
 @section('content')
   @include('components.header')
-  <div class="container">
+  <div
+    class="h-100 w-100 bg-evaluations d-flex justify-content-between align-items-center">
     <div class="image-side">
-      <img src="{{ asset('images/avaliacao.png') }}" alt="Avaliação" />
+      <img class="img-fluid" src="{{ asset('img/avaliacao.png') }}"
+        alt="Avaliação" />
     </div>
-    <div class="form-side">
-      <div class="form-container">
-        <h2>Avaliação de Sala</h2>
-        <form action="{{ route('evaluation.store') }}" method="POST">
-
-          <label for="nota">Nota:</label>
-          <div class="radio-group">
+    <div class="form-side w-50 d-flex justify-content-start">
+      <div class="bg-secondary-color form p-5">
+        <h2 class="title-var">Avaliação de Sala</h2>
+        <form action="{{ route('evaluation.store', $rent->id) }}" method="POST"
+          class="w-100 d-flex flex-column gap-3">
+          @csrf
+          <label class="label-var" for="nota">Nota:</label>
+          <div class="radio-group d-flex flex-row gap-3">
             <label><input type="radio" name="stars" value="1"> 1</label>
             <label><input type="radio" name="stars" value="2"> 2</label>
             <label><input type="radio" name="stars" value="3"> 3</label>
@@ -20,11 +23,12 @@
             <label><input type="radio" name="stars" value="5"> 5</label>
           </div>
 
-          <label for="comentario">Comentário:</label>
+          <label class="label-var" for="comentario">Comentário:</label>
+          <br>
           <textarea id="comentario" name="comment"
             placeholder="Digite o que você achou da sala">{{ old('comentario') }}</textarea>
-
-          <button type="submit">Enviar avaliação</button>
+          <br>
+          <button class="btn-var-primary" type="submit">Enviar avaliação</button>
         </form>
       </div>
     </div>

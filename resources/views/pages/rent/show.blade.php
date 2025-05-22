@@ -30,36 +30,43 @@
       <form action="" class="w-100 p-4 d-flex flex-wrap gap-4">
         <div class="espaco-40-por d-flex flex-column gap-2">
           <label for="" class="label">Inicio</label>
-          <input class="input" type="date"
-            value="{{ explode(' ', $rent->rentStart)[0] }}" disabled>
+          <input class="input" type="text"
+            value="{{ $rent->rentStart->format('d/m/Y') }}" readonly>
         </div>
         <div class="espaco-40-por d-flex flex-column gap-2">
           <label for="" class="label">Término</label>
-          <input class="input" type="date"
-            value="{{ explode(' ', $rent->rentEnd)[0] }}" disabled>
+          <input class="input" type="text"
+            value="{{ $rent->rentEnd->format('d/m/Y') }}" readonly>
         </div>
         <div class="w-100 d-flex flex-column gap-2">
           <label for="" class="label">Locatário</label>
           <input class="input" type="text" value="{{ $rent->client->name }}"
-            disabled>
+            readonly>
         </div>
 
         <div class="w-100 d-flex flex-column gap-2">
-          <h4 class="label">Acompanhantes</h4>
+          <h4 class="label">Acompanhantes - {{ sizeof($rent->guests) }}</h4>
           <ul>
-            <li class="acompanhantes-name">Eduardo</li>
-            <li class="acompanhantes-name">Lucas</li>
+            @forelse ($rent->guests as $guest)
+              <li class="acompanhantes-name">{{ $guest->name }}</li>
+            @empty
+              <li class="acompanhantes-name">SEM CONVIDADOS</li>
+            @endforelse
           </ul>
         </div>
 
         <div class="w-100 d-flex flex-column gap-2">
           <label for="" class="label">Data de Pagamento</label>
-          <input class="input" type="date">
+          <input class="input" type="text"
+            value="{{ isset($rent->payment) ? $rent->payment->created_at->format('d/m/Y') : 'PENDENTE' }}"
+            readonly>
         </div>
 
         <div class="w-100 d-flex justify-content-between">
-          <button class="btn btn-outline-primary">Cancelar</button>
-          <button class="btn btn-primary">Editar</button>
+          <a href="{{ route('rent.index') }}" class="btn btn-outline-primary">
+            Voltar
+          </a>
+
         </div>
       </form>
     </section>

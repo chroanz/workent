@@ -12,8 +12,8 @@ return new class extends Migration
     {
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('rentStart');
-            $table->dateTime('rentEnd');
+            $table->date('rentStart');
+            $table->date('rentEnd');
             $table->foreignIdFor(Client::class);
             $table->foreignIdFor(Room::class);
             $table->timestamps();

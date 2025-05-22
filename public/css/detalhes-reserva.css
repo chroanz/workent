@@ -10,6 +10,11 @@
 {
     width: 45%;
 }
+
+.max-height{
+    max-height: 60vh;
+    overflow: scroll;
+}
 figure
 {
     width: 75%;
@@ -30,8 +35,15 @@ figure img
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 75%;
+    width: 100%;
+    text-align: center;
 
+}
+.left{
+    text-align: left;
+}
+.titulo{
+    color: #1D227C;
 }
 
 .area-lista
@@ -61,7 +73,15 @@ figure img
     font-weight: 600;
     font-size: 1.2em;
 }
-
+.button{
+    background-color: #263AD1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 1.2rem;
+    width: 100%;
+}
 .input
 {
     font-size: 20px;
