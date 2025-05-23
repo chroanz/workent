@@ -86,9 +86,13 @@ Route::prefix('admin')->group(function () {
         return view('pages/admin/room/create');
     })->name('admin.room.create');
 
-    Route::get('/pagamentos', function () {
-        return view('pages/admin/payment/index');
-    })->name('admin.payment.index');
+    // Route::get('/pagamentos', function () {
+    //     return view('pages/admin/payment/index');
+    // })->name('admin.payment.index');
+
+    Route::prefix('pagamentos')->controller(PaymentController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.payment.index');
+    });
 
     Route::prefix('convidados')->controller(GuestController::class)->group(function () {
         Route::get('/', 'index')->name('guest.index');
