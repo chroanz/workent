@@ -10,7 +10,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $payments = Payment::all();
+        $payments = Payment::simplePaginate(8);
 
         return view('pages/admin/payment/index', [
             'payments' => $payments

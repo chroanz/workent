@@ -3,23 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::all();
+        $rooms = Room::simplePaginate(8);
 
         return view('pages/room/index', [
             'rooms' => $rooms
         ]);
     }
 
+    public function adminIndex()
+    {
+        return view('pages/admin/room/index', [
+            'rooms' => Room::simplePaginate(8),
+        ]);
+    }
+
     public function show(int $id)
     {
-        $room = Room::with('rents')->findOrFail($id);
+        $room = Room::findOrFail($id);
 
         return view('pages/room/show', compact('room'));
+    }
+
+    public function create()
+    {
+        return view('pages.admin.room.create');
     }
 
     public function store()
@@ -34,18 +47,4 @@ class RoomController extends Controller
 
         return redirect('/salas');
     }
-
-    public function adminIndex()
-    {
-        $rooms = Room::all();
-        return view('pages/admin/room/index', [
-            'rooms' => $rooms
-        ]);
-    }
-
-    public function create()
-    {
-    return view('pages.admin.room.create');
-    }
-
 }
