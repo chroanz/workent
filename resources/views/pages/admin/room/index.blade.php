@@ -1,15 +1,20 @@
 @extends('layout.app')
 @section('title', 'Salas')
 @section('css')
-  <link rel="stylesheet" href="{{ asset('css/reservas-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reservas-style.css') }}">
 @endsection
 @section('content')
   @include('components.header')
   <div class="listagem-container">
-    <h2 class="title">Salas</h2>
-    <a href="/salas/criar">
-      criar sala
-    </a>
+    <div class="d-flex flex-row align-items-baseline justify-content-around w-100" >
+        <div></div>
+        <h2 class="title">Salas</h2>
+        <div>
+            <a href="{{ route('admin.room.create') }}" class="btn btn-primary">
+                Criar Sala
+            </a>
+        </div>
+    </div>
     <table>
       <thead>
         <tr>
