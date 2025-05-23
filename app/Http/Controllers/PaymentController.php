@@ -10,7 +10,11 @@ class PaymentController extends Controller
 
     public function index()
     {
-        return Payment::all();
+        $payments = Payment::all();
+
+        return view('pages/admin/payment/index', [
+            'payments' => $payments
+        ]);
     }
 
     public function create($rent_id)
