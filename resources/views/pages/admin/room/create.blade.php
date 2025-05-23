@@ -62,12 +62,12 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="price" class="form-label">Valor da diária</label>
-              <input type="text" name="price" class="form-control" placeholder="R$ 129,99" required>
+              <input type="text" name="price" class="form-control" placeholder="R$ 129,99" step="0.01" required>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="capacity" class="form-label">Número de vagas</label>
-              <input type="number" name="capacity" class="form-control" placeholder="Digite o número" required>
+              <input type="number" name="capacity" class="form-control" placeholder="Digite o número" step="1" required>
               
             </div>
           </div>
