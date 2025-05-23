@@ -10,7 +10,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        return Payment::all();
+        return Payment::simplePaginate(8);
     }
 
     public function create($rent_id)

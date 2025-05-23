@@ -23,7 +23,7 @@ class RentController extends Controller
             return view('pages/rent/index', compact('rents'));
         }
 
-        $rents = Rent::with(['client', 'room', 'payment', 'evaluation'])->get();
+        $rents = Rent::with(['client', 'room', 'payment', 'evaluation'])->simplePaginate(8);
         return view('pages/admin/rent/index', compact('rents'));
     }
 
