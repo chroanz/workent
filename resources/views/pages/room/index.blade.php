@@ -3,7 +3,7 @@
   @include('components.header')
   <div class="bg-white w-100 d-flex justify-content-center align-items-start"
     style="min-height: 100%">
-    <div class="pagina-salas d-flex flex-wrap py-5">
+    <div class="pagina-salas d-flex flex-wrap py-5 justify-content-center">
       @foreach ($rooms as $room)
         <a href="/salas/{{ $room->id }}"
           class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
@@ -28,7 +28,11 @@
           </div>
         </a>
       @endforeach
+      <div class="pagination-container mt-5">
+        {{ $rooms->links() }}
+      </div>
     </div>
+  
   </div>
   @include('components.footer')
 @endsection
