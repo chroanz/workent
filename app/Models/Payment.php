@@ -17,4 +17,14 @@ class Payment extends Model
     {
         return $this->belongsTo(Rent::class);
     }
+
+    public function getReadablePaymentMethod(): string
+    {
+        return match ($this->payment_method) {
+            'credit_card' => 'Cartão de crédito',
+            'pix' => 'Pix',
+            'debit_card' => 'Cartão de débito',
+            default => 'Desconhecido'
+        };
+    }
 }

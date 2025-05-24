@@ -18,34 +18,18 @@
             </tr>
         </thead>
         <tbody>
-            <!-- @for ($i = 0; $i < 6; $i++)
-                <tr class="trdata">
-                <td class="tdata td-first">01</td>
-                <td class="tdata">Cícero Tadeu</td>
-                <td class="tdata">R$ 89,90</td>
-                <td class="tdata">01/04/2025</td>
-                </tr>
-                @endfor -->
-            @foreach ($payments as $index => $payment)
+            @foreach ($payments as $payment)
             <tr class="trdata">
-                <td class="tdata td-first">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</td>
-                <td class="tdata">{{ $payment['price'] }} R$</td>
-                <td class="tdata">{{ $payment['payment_method'] }}</td>
-                <td class="tdata">{{ $payment['rent_id'] }}</td>
+                <td class="tdata td-first">
+                    {{ str_pad($payment->id + 1, 2, '0', STR_PAD_LEFT) }}
+                </td>
+                <td class="tdata">R$ {{ $payment->price }}</td>
+                <td class="tdata">{{ $payment->getReadablePaymentMethod() }}</td>
+                <td class="tdata">{{ $payment->rent_id }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <!-- <nav aria-label="...">
-        <ul class="pagination pagination-lg">
-            <li class="page-item active" aria-current="page">
-                <span class="page-link">1</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-        </ul>
-    </nav> -->
 </div>
 @include("components.footer")
 @endsection
