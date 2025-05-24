@@ -81,10 +81,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/salas/criar', function () {
         return view('pages/admin/room/create');
     })->name('admin.room.create');
-
-    Route::get('/pagamentos', function () {
-        return view('pages/admin/payment/index');
-    })->name('admin.payment.index');
 });
 
 Route::prefix('admin')
@@ -109,6 +105,12 @@ Route::prefix('admin')
             ->group(function () {
                 Route::get('/', 'adminIndex')->name("admin.room.index");
                 Route::get('/criar', 'create')->name("admin.room.create");
+            });
+
+        Route::prefix('/pagamentos')
+            ->controller(PaymentController::class)
+            ->group(function () {
+                Route::get('/', 'index')->name('admin.payment.index');
             });
     });
 
