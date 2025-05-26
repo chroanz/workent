@@ -14,7 +14,7 @@
                 <th class="thead">ID</th>
                 <th class="thead">Valor</th>
                 <th class="thead">Método de pagamento</th>
-                <th class="thead">Aluguel ID</th>
+                <th class="thead">Responsável</th>
             </tr>
         </thead>
         <tbody>
@@ -25,11 +25,14 @@
                 </td>
                 <td class="tdata">R$ {{ $payment->price }}</td>
                 <td class="tdata">{{ $payment->getReadablePaymentMethod() }}</td>
-                <td class="tdata">{{ $payment->rent_id }}</td>
+                <td class="tdata">{{ $payment->rent->client->name }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    <div class="pagination-container">
+      {{ $payments->links() }}
+    </div>
 </div>
 @include("components.footer")
 @endsection

@@ -5,7 +5,7 @@
   <head>
 
   <title>Adicionar Sala</title>
-  
+
   <style>
     .form-container {
       max-width: 900px;
@@ -51,36 +51,31 @@
 <body>
   <div class="container form-container ">
     <h2 class="text-center m5 title">Adicionar sala</h2>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.room.store') }}">
+      @csrf
       <div class="row">
         <div class="col-md-7">
           <div class="mb-3">
-            <label for="room_number" class="form-label">Número da sala</label>
-            <input type="text" name="room_number" class="form-control" placeholder="1024" required>
+            <label for="name" class="form-label">Nome da sala</label>
+            <input type="text" name="name" class="form-control" placeholder="Nome da sala" required>
           </div>
 
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="price" class="form-label">Valor da diária</label>
-              <input type="text" name="price" class="form-control" placeholder="R$ 129,99" step="0.01" required>
+              <input type="number" name="price" class="form-control" placeholder="R$ 129,99" step="0.01" required>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="capacity" class="form-label">Número de vagas</label>
               <input type="number" name="capacity" class="form-control" placeholder="Digite o número" step="1" required>
-              
             </div>
-          </div>
-
-          <div class="mb-4">
-            <label for="location" class="form-label">Local</label>
-            <input type="text" name="location" class="form-control" placeholder="Digite o número" required>
           </div>
         </div>
 
         <div class="col-md-5 d-flex justify-content-center align-items-center mb-4">
           <div class="image-box">
-            <input type="file" name="image" accept="image/*" id="imageInput" class="d-none">
+            <input type="file" accept="image/*" id="imageInput" class="d-none">
             <button type="button" class="btn btn-blue btn-sm" onclick="document.getElementById('imageInput').click()">Adicionar Imagem</button>
           </div>
         </div>

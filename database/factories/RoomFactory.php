@@ -13,8 +13,8 @@ class RoomFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'capacity' => $this->faker->numberBetween(4, 10),
-            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'capacity' => $this->faker->numberBetween(3, 7),
+            'price' => $this->faker->randomFloat(2, 50, 200),
             'description' => $this->faker->text(200),
         ];
     }

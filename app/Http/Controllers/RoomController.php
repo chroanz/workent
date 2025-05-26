@@ -37,9 +37,9 @@ class RoomController extends Controller
     public function store()
     {
         $validate = request()->validate([
-            'name' => 'required|string|max:255',
-            'capacity' => 'required|int',
-            'price' => 'required|float'
+            'name' => 'required|string|min:2|max:255',
+            'capacity' => 'required|int|min:1',
+            'price' => 'required|numeric|min:0.01',
         ]);
 
         Room::create($validate);

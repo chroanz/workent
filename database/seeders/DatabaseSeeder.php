@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             ->has(Client::factory()->count(1))
             ->create();
 
-        Room::factory(8)->create();
+        Room::factory(12)->create();
     }
 }

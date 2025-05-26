@@ -10,7 +10,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $payments = Payment::simplePaginate(8);
+        $payments = Payment::with(['rent.client'])->simplePaginate(6);
 
         return view('pages/admin/payment/index', [
             'payments' => $payments

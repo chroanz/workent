@@ -77,12 +77,6 @@ Route::prefix('validar-entrada/{rent_id}')
         Route::post('/', 'validateEntrance')->name('entrance-validation.validate');
     });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/salas/criar', function () {
-        return view('pages/admin/room/create');
-    })->name('admin.room.create');
-});
-
 Route::prefix('admin')
     ->middleware(AdminMiddleware::class)
     ->group(function () {
@@ -105,6 +99,7 @@ Route::prefix('admin')
             ->group(function () {
                 Route::get('/', 'adminIndex')->name("admin.room.index");
                 Route::get('/criar', 'create')->name("admin.room.create");
+                Route::post('/', 'store')->name("admin.room.store");
             });
 
         Route::prefix('/pagamentos')

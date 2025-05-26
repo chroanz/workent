@@ -18,9 +18,9 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|max:255',
             'birthday' => 'required|date|before_or_equal:today',
-            'address' => 'required|min:4'
+            'address' => 'required|min:4|max:255'
         ]);
 
         $userId = Auth::id();
@@ -51,9 +51,9 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $formFields = $request->validate([
-            'name' => 'required|string|max:255',
-            'birthday' => 'required|date',
-            'address' => 'required|string|max:255',
+            'name' => 'required|string|min:4|max:255',
+            'birthday' => 'required|date|before_or_equal:today',
+            'address' => 'required|string|min:4|max:255',
         ]);
 
         $user = User::find(Auth::id());

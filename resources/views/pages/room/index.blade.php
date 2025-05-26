@@ -1,9 +1,9 @@
 @extends('layout.app')
 @section('content')
   @include('components.header')
-  <div class="bg-white w-100 d-flex justify-content-center align-items-start"
+  <div class="bg-white w-100 d-flex flex-column align-items-center"
     style="min-height: 100%">
-    <div class="pagina-salas d-flex flex-wrap py-5 justify-content-center">
+    <div class="pagina-salas d-flex flex-wrap pt-5 justify-content-center">
       @foreach ($rooms as $room)
         <a href="/salas/{{ $room->id }}"
           class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
@@ -28,11 +28,10 @@
           </div>
         </a>
       @endforeach
-      <div class="pagination-container mt-5">
-        {{ $rooms->links() }}
-      </div>
     </div>
-  
+    <div class="pagination-container mt-5 mb-5">
+      {{ $rooms->links() }}
+    </div>
   </div>
   @include('components.footer')
 @endsection
