@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
-use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -19,7 +18,7 @@ class RoomController extends Controller
     public function adminIndex()
     {
         return view('pages/admin/room/index', [
-            'rooms' => Room::simplePaginate(8),
+            'rooms' => Room::simplePaginate(4),
         ]);
     }
 

@@ -70,11 +70,18 @@
           <p class="fs-5">Disponível de 8h até 18h</p>
           <p class="fs-5">A partir do dia
             {{ $room->getWhenRoomIsFree()->format('d/m/Y') }}</p>
-          <a href="{{ route('rent.create', ['room_id' => $room->id]) }}"
-            class="btn-var-primary fs-5 py-2 text-decoration-none text-center"
-            style="width: 250px">
-            Reservar
-          </a>
+          @if (!auth()->user() || !auth()->user()->isAdmin())
+            <a href="{{ route('rent.create', ['room_id' => $room->id]) }}"
+              class="btn-var-primary fs-5 py-2 text-decoration-none text-center"
+              style="width: 250px">
+              Reservar
+            </a>
+          @else
+            <button class="btn-var-primary fs-5 py-2 text-decoration-none text-center"
+              style="width: 250px" disabled>
+              Reservar
+            </button>
+          @endif
         </div>
       </div>
     </div>

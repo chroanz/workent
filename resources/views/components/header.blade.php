@@ -11,7 +11,19 @@
           <div>
             <a href="{{ route('admin.rent.index') }}"
               class="text-decoration-none text-dark">
-              Painel de admin
+              Reservas
+            </a>
+          </div>
+          <div>
+            <a href="{{ route('admin.room.index') }}"
+              class="text-decoration-none text-dark">
+              Salas
+            </a>
+          </div>
+          <div>
+            <a href="{{ route('admin.payment.index') }}"
+              class="text-decoration-none text-dark">
+              Pagamentos
             </a>
           </div>
         @else
@@ -21,13 +33,13 @@
               Alugueis
             </a>
           </div>
+          <div>
+            <a href="{{ route('profile.edit') }}"
+              class="text-decoration-none text-dark">
+              Perfil
+            </a>
+          </div>
         @endif
-        <div>
-          <a href="{{ route('profile.edit') }}"
-            class="text-decoration-none text-dark">
-            Perfil
-          </a>
-        </div>
         <div>
           <form action="{{ route('auth.logout') }}" method="POST"
             class="d-flex justify-content-center align-items-center w-100">

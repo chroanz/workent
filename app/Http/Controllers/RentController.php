@@ -36,18 +36,19 @@ class RentController extends Controller
     public function create($room_id)
     {
         $room = Room::findOrFail($room_id);
-        return view('pages/rent/create', compact('room'));
+        $rentStart = $room->getWhenRoomIsFree()->format('d/m/Y');
+        return view('pages/rent/create', ['room' => $room, 'rentStart' => $rentStart]);
     }
 
     public function store($room_id)
     {
         $validated = request()->validate([
-            'rentStart' => 'required|date|after_or_equal:today',
             'rentEnd' => 'required|date|after_or_equal:rentStart',
             'guests' => 'nullable|array',
             'guests.*.name' => 'nullable|string|max:255',
             'guests.*.email' => 'nullable|email',
         ]);
+        $validated['rentStart'] = date('m/d/Y h:i:s a', time());
 
         $guests = array_filter($validated['guests'] ?? [], function ($guest) {
             return !empty($guest['name']) && !empty($guest['email']);
@@ -63,7 +64,7 @@ class RentController extends Controller
         if (!empty($guests)) {
             for ($i = 0; $i < sizeof($guests); $i++) {
                 $guests[$i]['rent_id'] = $rent->id;
-                $guests[$i]['entrance_code'] = "entrance_code";
+                $guests[$i]['entrance_code'] = "codigo";
             }
             Guest::insert($guests);
         }
