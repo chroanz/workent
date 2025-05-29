@@ -3,13 +3,14 @@
 @section('content')
   @include('components.header')
   <div
-    class="h-100 w-100 bg-evaluations d-flex justify-content-between align-items-center">
-    <div class="image-side">
-      <img class="img-fluid" src="{{ asset('img/avaliacao.png') }}"
+    class="container-fluid bg-var-primary d-flex justify-content-between align-items-center"
+    style="width: clamp(300px, 100%, 1200px)">
+    <div class="w-50">
+      <img class="w-100" src="{{ asset('img/avaliacao.png') }}"
         alt="Avaliação" />
     </div>
     <div class="form-side w-50 d-flex justify-content-start">
-      <div class="bg-secondary-color form p-5">
+      <div class="form p-5">
         <h2 class="title-var">Avaliação de Sala</h2>
         <form action="{{ route('evaluation.store', $rent->id) }}" method="POST"
           class="w-100 d-flex flex-column gap-3">
