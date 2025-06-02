@@ -1,93 +1,57 @@
 @extends('layout.app')
-@section('title', 'Admin - Criar de sala')
+
+@section('title', 'Admin - Criar sala')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/criar-sala.css') }}">
+@endsection
+
 @section('content')
-  @include('components.header')
-  <head>
+@include('components.header')
 
-  <title>Adicionar Sala</title>
+<div class="w-100 h-100 bg-amber-950 d-flex flex-column align-center py-5">
+  <h2 class="text-center m5 title" style="color:#1531df;">Adicionar sala</h2>
 
-  <style>
-    .form-container {
-      max-width: 900px;
-      margin-top: 50px auto;
-    }
+  <form method="POST" enctype="multipart/form-data" action="{{ route('admin.room.store') }}" class="form">
+    @csrf
 
-    .title {
-      color: #1531df;
-    }
+    <div class="mb-3 container-form-group">
+      <label for="name" class="form-label">Nome da sala</label>
+      <input type="text" name="name" id="name" class="form-control" placeholder="Nome da sala" required>
+    </div>
 
-    .image-box {
-      border: 1px solid black;
-      border-radius: 10px;
-      width: 220px;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    <div class="mb-3 container-form-group">
+      <label for="price" class="form-label">Valor da diária</label>
+      <input type="number" name="price" id="price" class="form-control" placeholder="R$ 129,99" step="0.01" required>
+    </div>
 
-    .btn-blue {
-      background-color: #1531df;
-      color: #fff;
-      border-radius: 10px
-    }
+    <div class="mb-3 container-form-group">
+      <label for="capacity" class="form-label">Número de vagas</label>
+      <input type="number" name="capacity" id="capacity" class="form-control" placeholder="Digite o número" step="1" required>
+    </div>
 
-    .btn-blue:hover {
-      background-color: #0f25a5;
-      border-radius: 10px
-    }
-
-    .form-label {
-      color: #1531df;
-      font-weight: 600;
-    }
-
-    .form-control{
-      border: 1px solid black;
-      border-radius: 10px
-    }
-  </style>
-</head>
-<body>
-  <div class="container form-container ">
-    <h2 class="text-center m5 title">Adicionar sala</h2>
-    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.room.store') }}">
-      @csrf
-      <div class="row">
-        <div class="col-md-7">
-          <div class="mb-3">
-            <label for="name" class="form-label">Nome da sala</label>
-            <input type="text" name="name" class="form-control" placeholder="Nome da sala" required>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="price" class="form-label">Valor da diária</label>
-              <input type="number" name="price" class="form-control" placeholder="R$ 129,99" step="0.01" required>
-            </div>
-
-            <div class="col-md-6 mb-3">
-              <label for="capacity" class="form-label">Número de vagas</label>
-              <input type="number" name="capacity" class="form-control" placeholder="Digite o número" step="1" required>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-5 d-flex justify-content-center align-items-center mb-4">
-          <div class="image-box">
-            <input type="file" accept="image/*" id="imageInput" class="d-none">
-            <button type="button" class="btn btn-blue btn-sm" onclick="document.getElementById('imageInput').click()">Adicionar Imagem</button>
-          </div>
-        </div>
+    <div class="box-container">
+      <div class="image-box">
+        <input type="file" accept="image/*" name="image_1" id="imageInput1" class="d-none">
+        <button type="button" class="btn-blue btn-sm" onclick="document.getElementById('imageInput1').click()">Imagem 1</button>
       </div>
 
-      <div class="text-center">
-        <button type="submit" style="border-radius: 20px" class="btn btn-blue w-75 py-3 fs-5">Adicionar</button>
+      <div class="image-box">
+        <input type="file" accept="image/*" name="image_2" id="imageInput2" class="d-none">
+        <button type="button" class="btn-blue btn-sm" onclick="document.getElementById('imageInput2').click()">Imagem 2</button>
       </div>
-    </form>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-  @include('components.footer')
+      <div class="image-box">
+        <input type="file" accept="image/*" name="image_3" id="imageInput3" class="d-none">
+        <button type="button" class="btn-blue btn-sm" onclick="document.getElementById('imageInput3').click()">Imagem 3</button>
+      </div>
+    </div>
+
+    <div class="text-center" style="width: 100%; max-width: 400px;">
+      <button type="submit" class="btn-blue w-100">Adicionar</button>
+    </div>
+  </form>
+</div>
+
+@include('components.footer')
 @endsection

@@ -1,33 +1,32 @@
 @extends('layout.app')
+
 @section('content')
   @include('components.header')
+
   <div class="bg-white w-100 d-flex justify-content-center align-items-start"
     style="min-height: 100%">
     <div class="pagina-detalhes p-5 gap-5">
+
+      <!-- Carrossel dinâmico com imagens da sala -->
       <div id="galeria" class="carousel slide" data-bs-ride="carousel"
         style="max-width: 100%; overflow: hidden;">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="{{ asset('img/exemplo-sala.png') }}"
-              alt="sala de exemplo"
-              style="object-fit: contain; max-height: 500px;">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('img/exemplo-sala.png') }}"
-              alt="sala de exemplo"
-              style="object-fit: contain; max-height: 500px;">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('img/exemplo-sala.png') }}"
-              alt="sala de exemplo"
-              style="object-fit: contain; max-height: 500px;">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('img/exemplo-sala.png') }}"
-              alt="sala de exemplo"
-              style="object-fit: contain; max-height: 500px;">
-          </div>
+          @forelse ($room->images as $index => $image)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+              <img class="d-block w-100" src="{{ asset("images/" . $image->image_path) }}"
+              alt="Imagem da sala {{ $room->name }}"
+              style="width: 100%; height: 500px; object-fit: cover;">
+            </div>
+          @empty
+            <!-- Caso não tenha imagens, exibe imagem padrão -->
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="{{ asset('img/exemplo-sala.png') }}"
+                alt="sala de exemplo"
+                style="object-fit: contain; max-height: 500px;">
+            </div>
+          @endforelse
         </div>
+
         <button class="carousel-control-prev" type="button"
           data-bs-target="#galeria" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,6 +38,8 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+      <!-- Descrição e informações da sala -->
       <div
         class="w-100 d-flex gap-5 align-items-start justify-content-between flex-wrap px-5">
         <div class="sala-descricao flex-grow-1 d-flex flex-column gap-2">
@@ -86,5 +87,6 @@
       </div>
     </div>
   </div>
+
   @include('components.footer')
 @endsection
