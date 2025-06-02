@@ -39,4 +39,12 @@ class Room extends Model
 
         return $rentEnd < now() ? new DateTime() : $rentEnd;
     }
+
+    public function images()
+    {
+        return $this->hasMany(RoomImage::class);
+    }
+
+
+
 }
