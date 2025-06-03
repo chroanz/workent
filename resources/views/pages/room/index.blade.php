@@ -7,7 +7,11 @@
       @foreach ($rooms as $room)
         <a href="/salas/{{ $room->id }}"
           class="card-sala text-decoration-none text-dark  d-flex flex-column justify-content-start gap-2 p-2">
+          @if($room->images->isNotEmpty())
+          <img src="{{ asset("images/" . $room->images[0]->image_path) }}" alt="Sala de exemplo">
+          @else
           <img src="{{ asset('img/exemplo-sala.png') }}" alt="Sala de exemplo">
+          @endif
           <div
             class="card-descricao d-flex justify-content-between align-items-start">
             <div>

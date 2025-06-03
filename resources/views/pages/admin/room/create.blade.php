@@ -9,7 +9,7 @@
 @section('content')
 @include('components.header')
 
-<div class="w-100 h-100 bg-amber-950 d-flex flex-column align-center py-5">
+<div class="w-100 bg-amber-950 d-flex flex-column align-center py-5">
   <h2 class="text-center m5 title" style="color:#1531df;">Adicionar sala</h2>
 
   <form method="POST" enctype="multipart/form-data" action="{{ route('admin.room.store') }}" class="form">
@@ -28,6 +28,11 @@
     <div class="mb-3 container-form-group">
       <label for="capacity" class="form-label">Número de vagas</label>
       <input type="number" name="capacity" id="capacity" class="form-control" placeholder="Digite o número" step="1" required>
+    </div>
+
+    <div class="mb-3 container-form-group">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea name="description" rows="5" placeholder="Descrição da sala" class="form-control"></textarea>
     </div>
 
     <div class="box-container">

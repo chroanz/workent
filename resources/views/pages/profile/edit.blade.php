@@ -5,7 +5,7 @@
 
 
   <div class="container my-5">
-  <div class="row justify-content-center align-items-center"> 
+  <div class="row justify-content-center align-items-center">
 
     <div class="col d-flex justify-content-center">
       <div class="placeholder w-50 p-4">
@@ -14,7 +14,7 @@
           @method('PUT')
 
           <div class="text-center mb-4 d-flex justify-content-center">
-            <div class="shadow-lg rounded text-white h-100 rounded p-3" style="width: 65%; background-color: #263AD1;">
+            <div class="shadow-lg rounded text-white h-100 p-3" style="background-color: #263AD1;">
               <div class="mb-3 text-center">
                 <label for="profile_image" class="form-label" style="cursor: pointer;">
                   <img src="{{ asset('images/' . $client->url_img)  }}" style="width: 65%;" alt="Imagem de Perfil" />
@@ -32,11 +32,6 @@
           </div>
 
           <div class="mb-3">
-            <label for="email" class="form-label fw-bold">Email</label>
-            <input type="email" name="email" class="form-control border border-dark" style="border-radius: 15px;" value="{{ $client->email }}" required>
-          </div>
-
-          <div class="mb-3">
             <label for="birthday" class="form-label fw-bold">Data de nascimento</label>
             <input type="date" name="birthday" class="form-control border border-dark" style="border-radius: 15px;" value="{{ $client->birthday }}" required>
           </div>
@@ -50,7 +45,7 @@
             <button type="button" class="btn fw-semibold" style="width: 30%; color: #263AD1; border-color: #263AD1;">Sair</button>
             <button type="submit" class="btn fw-bold" style="width: 30%; color: aliceblue; background-color: #263AD1;">Editar</button>
           </div>
-        </form> 
+        </form>
       </div>
     </div>
 
