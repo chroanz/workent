@@ -42,7 +42,7 @@
           </div>
 
           <div class="d-flex justify-content-between">
-            <button type="button" class="btn fw-semibold" style="width: 30%; color: #263AD1; border-color: #263AD1;">Sair</button>
+            <a href="/" type="button" class="btn fw-semibold" style="width: 30%; color: #263AD1; border-color: #263AD1;">Sair</a>
             <button type="submit" class="btn fw-bold" style="width: 30%; color: aliceblue; background-color: #263AD1;">Editar</button>
           </div>
         </form>
