@@ -70,4 +70,17 @@ class RentController extends Controller
         }
         return redirect()->route('payment.create', ['rent_id' => $rent->id]);
     }
+
+    public function destroy($rent_id)
+    {
+        $rent = Rent::findOrFail($rent_id);
+        if ($rent->payment) {
+            return redirect()->route('rent.index')->with('error', 'Não é possível excluir um aluguel com pagamento associado.');
+        }
+        if ($rent->guests->count() > 0) {
+            $rent->guests()->delete();
+        }
+        $rent->delete();
+        return redirect()->route('rent.index')->with('success', 'Aluguel excluído com sucesso!');
+    }
 }

@@ -68,6 +68,11 @@ Route::prefix('reservas')
                 Route::get('/', 'create')->name("payment.create");
                 Route::post('/', 'store')->name('payment.store');
             });
+        Route::prefix('{rent_id}/deletar')
+            ->controller(RentController::class)
+            ->group(function () {
+                Route::delete('/', 'destroy')->name('rent.destroy');
+            });
     });
 
 Route::prefix('validar-entrada/{rent_id}')

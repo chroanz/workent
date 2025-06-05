@@ -67,7 +67,15 @@
                           class="btn btn-sm btn-primary me-2">
                           Validar entrada
                         </a>
-
+                        @if (!$rent->payment)
+                        <form action="{{ route('rent.destroy', $rent->id) }}"
+                          method="POST" class="d-inline">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit"
+                            class="btn btn-sm btn-danger">Cancelar</button>
+                        </form>
+                        @endif
                       </td>
                     </tr>
                   @empty
