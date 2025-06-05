@@ -26,6 +26,12 @@
               Pagamentos
             </a>
           </div>
+          <div>
+            <a href="{{ route('user.admin.index') }}"
+              class="text-decoration-none text-dark">
+              Usuarios
+            </a>
+          </div> 
         @else
           <div>
             <a href="{{ route('rent.index') }}"

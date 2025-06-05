@@ -51,7 +51,7 @@ header .logo {
     text-align: center;
 }
 
-.barra-busca div:nth-child(1), .barra-busca div:nth-child(2) {
+.barra-busca div:nth-child(1), .barra-busca div:nth-child(2), .barra-busca div:nth-child(3), .barra-busca div:nth-child(4) {
     border-right: 1px solid rgba(128, 128, 128, 0.5);
 }
 
